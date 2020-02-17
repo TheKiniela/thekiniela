@@ -15,54 +15,13 @@ a {
   right: 5%;
 }
 
-.home-bg {
-  background-image: url(../images/home.gif);
-  background-size: cover;
-  background-position: center center;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  top: 0;
-  right: 0;
+.index-form {
+  margin-top: 100px;
 }
 
-.private-bg {
-  background-color: #52b9db;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  top: 0;
-  right: 0;
-}
 
-.public-bg {
-  background-color: #4aabb1;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  bottom: 0;
-  left: 0;
-  top: 0;
-  right: 0;
-}
 
-.img-private {
-  width: 800px;
-  margin: auto;
-  height: 500px;
-  background-image: url(../images/private.gif);
-}
 
-.img-public {
-  width: 800px;
-  margin: auto;
-  height: 600px;
-  background-image: url(../images/public.gif);
-}
 
 
 // Forms styles
