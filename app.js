@@ -16,7 +16,7 @@ const User = require("./models/user");
 
 
 mongoose
-  .connect('mongodb://localhost/lab-auth-passport', {useNewUrlParser: true})
+  .connect('mongodb://localhost/kiniela', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
