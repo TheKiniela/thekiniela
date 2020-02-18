@@ -76,6 +76,7 @@ router.get('/logout', (req, res) => {
 
 module.exports = router;
 
+// Google login routes
 router.get(
   "/auth/google",
   passport.authenticate("google", {
@@ -89,6 +90,17 @@ router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
     successRedirect: "/private-page",
-    failureRedirect: "/" // here you would redirect to the login page using traditional login approach
+    failureRedirect: "/login" // here you would redirect to the login page using traditional login approach
   })
 );
+
+// Facebook login routes
+router.get(
+  '/auth/facebook', 
+  passport.authenticate('facebook'));
+
+router.get(
+  '/auth/facebook/callback',
+  passport.authenticate('facebook', { 
+    successRedirect: '/private-page',
+    failureRedirect: '/login' }));
