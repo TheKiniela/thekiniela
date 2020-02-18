@@ -27,5 +27,17 @@
   },
   "devDependencies": {
     "nodemon": "^1.12.1"
-  }
+  },
+  "description": "TheKiniela",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheKiniela/thekiniela.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheKiniela/thekiniela/issues"
+  },
+  "homepage": "https://github.com/TheKiniela/thekiniela#readme"
 }
