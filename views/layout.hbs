@@ -42,6 +42,12 @@
       <a class="nav-link" href="/login">Log In</a>
       <a href="/signup" class="btn btn-outline-info my-2 my-sm-0" type="submit">Sign Up</a>
       {{/if}}
+      {{#unless user}}
+  Home page
+  <div>
+    <a href="/auth/google">Login With Google</a>
+  </div>
+{{/unless}}
     </form>
   </div>
 </nav>

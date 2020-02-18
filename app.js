@@ -13,10 +13,11 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require("./models/user");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
 
 mongoose
-  .connect('mongodb://localhost/lab-auth-passport', {useNewUrlParser: true})
+  .connect('mongodb://localhost/kiniela-user', {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -110,3 +111,32 @@ app.use('/', router);
 
 
 module.exports = app;
+
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: "120553079671-0n6tbtaja4amggujhiaib6vl08ik2rkg.apps.googleusercontent.com",
+      clientSecret: "FHja4bIsRcKINaV5YBOS7NOy",
+      callbackURL: "/auth/google/callback"
+    },
+    (accessToken, refreshToken, profile, done) => {
+      // to see the structure of the data in received response:
+      console.log("Google account details:", profile);
+
+      User.findOne({ googleID: profile.id })
+        .then(user => {
+          if (user) {
+            done(null, user);
+            return;
+          }
+
+          User.create({ googleID: profile.id })
+            .then(newUser => {
+              done(null, newUser);
+            })
+            .catch(err => done(err)); // closes User.create()
+        })
+        .catch(err => done(err)); // closes User.findOne()
+    }
+  )
+);
