@@ -27,6 +27,8 @@
       </li>
 
     </ul>
+
+
     <form class="form-inline my-2 my-lg-0">
       {{#if user}}
       <li class="nav-item" style="padding-right:20px">
@@ -42,6 +44,15 @@
       <a class="nav-link" href="/login">Log In</a>
       <a href="/signup" class="btn btn-outline-info my-2 my-sm-0" type="submit">Sign Up</a>
       {{/if}}
+
+
+      {{#unless user}}
+  Home page
+  <div>
+    <a href="/auth/google">Login With Google</a>
+    <a href="/auth/facebook">Login With Facebook</a>
+  </div>
+{{/unless}}
     </form>
   </div>
 </nav>
@@ -49,7 +60,8 @@
 <body>
 
   {{{body}}}
-
+  
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/script.js"></script>
 </body>
 
