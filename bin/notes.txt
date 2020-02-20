@@ -1,0 +1,27 @@
+MODELOS
+
+# User
+
+id: 01
+user: "nombre"
+password: "123"
+
+
+
+# Game
+
+id: 01
+round: 22,
+matches: 
+    [
+        "Atlético - Betis",
+        "Barça - Real Madrid",
+        "Real Sociedad - Sevilla"
+    ],
+scores: [1,2,1,x,2,1,x,x,x,1],
+users: 
+    {
+        id: 01
+        bet: [1,2,1,x,2,1,x,x,x,1]
+    }
+    
