@@ -1,4 +1,6 @@
-
+// window.onload = function(){
+//   getApifootball(restApifootball)
+// }
 
 const restApifootball = axios.create({
   baseURL: `https://apiv2.apifootball.com/?action=get_events&from=2020-02-21&to=2020-02-23&country_id=135&league_id=468&APIkey=ce05d1110b0b6ea02a5649e270ed95c243e036dc31a6b0e3f89be14dbe27a160`
@@ -12,6 +14,16 @@ function getApifootball(restApifootball) {
 }
 
 document.getElementById("callTheAPI").addEventListener("click", function () {
+// let round = document.querySelector("#round").innerText
+//  let object={
+//     prop1: value,
+//     round:round,
+//   }
+//   axios.post('/createMatch', object)
+
+
+
+
   getApifootball(restApifootball).then(data => {
     // Show the matches
     let labels = document.getElementsByClassName("match");
@@ -20,7 +32,46 @@ document.getElementById("callTheAPI").addEventListener("click", function () {
     }
 
     // Show the round
-    console.log(data[0].match_round)
     document.getElementById("round").innerHTML = data[0].match_round;
+    document.getElementById("round").value = data[0].match_round;
+
+    
+    let round = document.getElementById("round").innerText;
+    document.querySelector('input[name="round"]').value = round;
+    console.log(round);
+
+    let match1 = document.getElementById("match1").innerText;
+    document.querySelector('input[name="match1"]').value = match1;
+
+    let match2 = document.getElementById("match2").innerText;
+    document.querySelector('input[name="match2"]').value = match2;
+
+    let match3 = document.getElementById("match3").innerText;
+    document.querySelector('input[name="match3"]').value = match3;
+
+    let match4 = document.getElementById("match4").innerText;
+    document.querySelector('input[name="match4"]').value = match4;
+
+    let match5 = document.getElementById("match5").innerText;
+    document.querySelector('input[name="match5"]').value = match5;
+
+    let match6 = document.getElementById("match6").innerText;
+    document.querySelector('input[name="match6"]').value = match6;
+
+    let match7 = document.getElementById("match7").innerText;
+    document.querySelector('input[name="match7"]').value = match7;
+
+    let match8 = document.getElementById("match8").innerText;
+    document.querySelector('input[name="match8"]').value = match8;
+
+    let match9 = document.getElementById("match9").innerText;
+    document.querySelector('input[name="match9"]').value = match9;
+
+    let match10 = document.getElementById("match10").innerText;
+    document.querySelector('input[name="match10"]').value = match10;
+
+    
   });
 });
+
+
