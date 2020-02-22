@@ -7,77 +7,112 @@ router.get('/', (req, res, next) => {
   res.render('index', {
     user: req.user
   });
- 
+
 });
-
-
 
 // Send info to create new game/bets
 router.post('/', (req, res, next) => {
   let userId = req.user._id
-  
-  function saveUsersBets(user) {
-    console.log(user + " lo imprime. VIVA!!")
+
+  // function saveUsersBets(user) {
+  //   console.log(user + " lo imprime. VIVA!!")
+
+  // }
+  console.log(req.body)
+
+  const {
+    round,
+    match1,
+    match2,
+    match3,
+    match4,
+    match5,
+    match6,
+    match7,
+    match8,
+    match9,
+    match10,
+    bet_1,
+    bet_2,
+    bet_3,
+    bet_4,
+    bet_5,
+    bet_6,
+    bet_7,
+    bet_8,
+    bet_9,
+    bet_10,
+    results,
+  } = req.body;
+
+  const newUser = {
+    userID: userId,
+    bets: [
+      bet_1,
+      bet_2,
+      bet_3,
+      bet_4,
+      bet_5,
+      bet_6,
+      bet_7,
+      bet_8,
+      bet_9,
+      bet_10
+    ],
   }
-      console.log(req.body)
 
-      const {
-        round,
-        match1,
-        match2,
-        match3,
-        match4,
-        match5,
-        match6,
-        match7,
-        match8,
-        match9,
-        match10,
-        results,
-        users
-      } = req.body;
+  games.findOne({
+      'round': req.body.round
+    })
+    .then(game => {
+      console.log(req.body.round)
+      
+      if (game !== null) {
 
-      games.findOne({
-          'round': req.body.round
-        })
-        .then(game => {
-          console.log(req.body.round)
-          if (game !== null) {
-            
-            saveUsersBets(userId);
-            res.redirect("/")
-          } else {
-
-            const newGame = new games({
-              round,
-              match1,
-              match2,
-              match3,
-              match4,
-              match5,
-              match6,
-              match7,
-              match8,
-              match9,
-              match10,
-              results,
-              users
-            })
-            newGame.save()
-              .then((games) => {
-                res.redirect('/');
-              })
-              .catch((error) => {
-                console.log('Error while creating new game');
-                res.render("/");
-              })
+        if (!game.users.find(e => {
+            return e.userID.toString() === req.user._id.toString()
+          })) {
+          games.update({
+            _id: game._id
+          }, {
+            $push: {
+              users: newUser
             }
-            saveUsersBets(userId);
+          }).then(() => res.redirect("/"))
+        } else {
+          return res.redirect("/")
+        }
+      } else {
+        const newGame = new games({
+          round,
+          match1,
+          match2,
+          match3,
+          match4,
+          match5,
+          match6,
+          match7,
+          match8,
+          match9,
+          match10,
+          results,
+          users: [newUser]
         })
-        // .catch(error => {
-        //   console.log('Error trying to edit the movie: ', error);
-        // })
+        newGame.save()
+          .then((games) => {
+            res.redirect('/');
+          })
+          .catch((error) => {
+            console.log('Error while creating new game');
+            res.render("/");
+          })
+      }
+
+    })
+  // .catch(error => {
+  //   console.log('Error trying to edit the movie: ', error);
+  // })
 })
 
 
-      module.exports = router;
+module.exports = router;
