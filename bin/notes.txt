@@ -18,7 +18,7 @@ matches:
         "Barça - Real Madrid",
         "Real Sociedad - Sevilla"
     ],
-scores: [1,2,1,x,2,1,x,x,x,1],
+results: [1,2,1,x,2,1,x,x,x,1],
 users: 
     {
         id: 01
