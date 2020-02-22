@@ -4,9 +4,17 @@ const games = require("../models/game");
 
 /* GET home page */
 router.get('/', (req, res, next) => {
+  
   res.render('index', {
     user: req.user
   });
+
+});
+
+router.get('/bet', (req, res, next) => {
+  res.render('bet', {
+    
+  })
 
 });
 
@@ -78,9 +86,13 @@ router.post('/', (req, res, next) => {
             $push: {
               users: newUser
             }
-          }).then(() => res.redirect("/"))
+            
+          }).then(() => res.redirect("bet", game._id))
         } else {
-          return res.redirect("/")
+         
+          let apuestas = newUser.bets
+          console.log(apuestas + " hola")
+          return res.render("bet", {apuestas})
         }
       } else {
         const newGame = new games({
@@ -112,6 +124,10 @@ router.post('/', (req, res, next) => {
   // .catch(error => {
   //   console.log('Error trying to edit the movie: ', error);
   // })
+})
+
+router.get("/edit", (req, res, next) => {
+  res.render("edit")
 })
 
 

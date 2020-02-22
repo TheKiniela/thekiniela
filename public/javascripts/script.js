@@ -22,7 +22,9 @@ document.getElementById("callTheAPI").addEventListener("click", function () {
 //   axios.post('/createMatch', object)
 
 
-
+document.getElementById("clear").addEventListener("click", function() {
+  document.getElementById("clear").reset();
+})
 
   getApifootball(restApifootball).then(data => {
     // Show the matches
