@@ -140,7 +140,9 @@ passport.use(
           }
 
           User.create({
-              facebookID: profile.id
+              facebookID: profile.id,
+              username: profile.displayName,
+              score: 0
             })
             .then(newUser => {
               done(null, newUser);
@@ -184,7 +186,9 @@ passport.use(
           }
 
           User.create({
-              googleID: profile.id
+              googleID: profile.id,
+              username: profile.displayName,
+              score: 0
             })
             .then(newUser => {
               done(null, newUser);

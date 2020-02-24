@@ -1,31 +1,52 @@
 const express = require('express');
 const router = express.Router();
 const games = require("../models/game");
+const ensureLogin = require('connect-ensure-login');
 
 /* GET home page */
+router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  
+    let userId = req.user._id;
+    games.findOne({"users.userID": userId})
+    .then(game => {
+      if (game !== null) {
+        let bets = game.users.find(e => {
+          return e.userID.toString() === req.user._id.toString()
+        }).bets;
+        
+        games.findOne({"users.userID": userId}, "-_id matches")
+        .then(({matches}) => {
+          
+          res.render('bet', {
+            user: req.user,
+            matches,
+            bets
+          });
+        })
+        
+      } else {
+        res.render('index', {
+          user: req.user
+        });
+      }
+    })
+
+});
+
 router.get('/', (req, res, next) => {
   
-  res.render('index', {
-    user: req.user
-  });
-
-});
-
-router.get('/bet', (req, res, next) => {
-  res.render('bet', {
+      res.render('index', {
+        user: req.user
+      });
     
-  })
-
 });
+
+
 
 // Send info to create new game/bets
 router.post('/', (req, res, next) => {
   let userId = req.user._id
 
-  // function saveUsersBets(user) {
-  //   console.log(user + " lo imprime. VIVA!!")
-
-  // }
   console.log(req.body)
 
   const {
@@ -69,6 +90,19 @@ router.post('/', (req, res, next) => {
     ],
   }
 
+  const matches = [
+    match1,
+    match2,
+    match3,
+    match4,
+    match5,
+    match6,
+    match7,
+    match8,
+    match9,
+    match10
+  ]
+
   games.findOne({
       'round': req.body.round
     })
@@ -87,26 +121,20 @@ router.post('/', (req, res, next) => {
               users: newUser
             }
             
-          }).then(() => res.redirect("bet", game._id))
+          }).then(() => {
+            let bets = newUser.bets
+            res.redirect("/main")
+          })
         } else {
          
-          let apuestas = newUser.bets
-          console.log(apuestas + " hola")
-          return res.render("bet", {apuestas})
+          
+          console.log(bets + " hola")
+          return res.redirect("/main")
         }
       } else {
         const newGame = new games({
           round,
-          match1,
-          match2,
-          match3,
-          match4,
-          match5,
-          match6,
-          match7,
-          match8,
-          match9,
-          match10,
+          matches,
           results,
           users: [newUser]
         })

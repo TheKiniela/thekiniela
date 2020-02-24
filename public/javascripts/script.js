@@ -13,18 +13,62 @@ function getApifootball(restApifootball) {
     .catch(err => console.log("Error is: ", err));
 }
 
+document.getElementById("showResults").addEventListener("click", function () {
+  getApifootball(restApifootball).then(data => {
+    let homeScore = data.map(match => {
+      return match.match_hometeam_score;
+    })
+
+    let awayScore = data.map(match => {
+      return match.match_awayteam_score;
+    })
+
+    let scores = []
+    for (let i = 0; i < homeScore.length; i++) {
+      if (homeScore[i] > awayScore[i]) {
+        scores.push("1")
+      }
+      if (homeScore[i] < awayScore[i]) {
+        scores.push("2")
+      }
+      if (homeScore[i] === awayScore[i]) {
+        scores.push("X")
+      }
+    }
+
+    let results = document.getElementsByClassName("results");
+    for (let i = 0; i < results.length; i++) {
+      results[i].innerText = scores[i]
+    }
+
+    let userBets = document.getElementsByClassName("user-bets");
+    console.log(userBets)
+
+    let successes = [];
+    for (let i = 0; i < results.length; i++) {
+      if (userBets[i].innerText === results[i].innerText) {
+        successes.push(true);
+      } else {
+        successes.push(false);
+      }
+    }
+
+    console.log(successes)
+    
+  })
+  
+});
+
+
+
 document.getElementById("callTheAPI").addEventListener("click", function () {
-// let round = document.querySelector("#round").innerText
-//  let object={
-//     prop1: value,
-//     round:round,
-//   }
-//   axios.post('/createMatch', object)
+  // let round = document.querySelector("#round").innerText
+  //  let object={
+  //     prop1: value,
+  //     round:round,
+  //   }
+  //   axios.post('/createMatch', object)
 
-
-document.getElementById("clear").addEventListener("click", function() {
-  document.getElementById("clear").reset();
-})
 
   getApifootball(restApifootball).then(data => {
     // Show the matches
@@ -37,7 +81,7 @@ document.getElementById("clear").addEventListener("click", function() {
     document.getElementById("round").innerHTML = data[0].match_round;
     document.getElementById("round").value = data[0].match_round;
 
-    
+
     let round = document.getElementById("round").innerText;
     document.querySelector('input[name="round"]').value = round;
     console.log(round);
@@ -72,8 +116,11 @@ document.getElementById("clear").addEventListener("click", function() {
     let match10 = document.getElementById("match10").innerText;
     document.querySelector('input[name="match10"]').value = match10;
 
-    
+
   });
 });
 
 
+document.getElementById("clear").addEventListener("click", function () {
+  document.getElementById("clear").reset();
+})
