@@ -15,6 +15,12 @@ a {
 .index-form {
   margin-top: 100px; }
 
+.display-scores {
+  width: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between; }
+
 .form-signin {
   width: 100%;
   max-width: 420px;

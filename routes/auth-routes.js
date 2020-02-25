@@ -17,7 +17,7 @@ router.get('/login', (req, res, next) => {
 router.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/main',
     failureRedirect: '/login',
     // failureFlash: true,
     passReqToCallback: true
@@ -32,7 +32,7 @@ router.post('/signup', (req, res, next) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    res.render('auth/signup', { message: 'Indicate username and password' });
+    res.render('/main', { message: 'Indicate username and password' });
     return;
   }
 
@@ -48,7 +48,8 @@ router.post('/signup', (req, res, next) => {
 
       const newUser = new User({
         username,
-        password: hashPass
+        password: hashPass,
+        score: 0
       });
 
       return newUser.save();
@@ -89,7 +90,7 @@ router.get(
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/private-page",
+    successRedirect: "/main",
     failureRedirect: "/login" // here you would redirect to the login page using traditional login approach
   })
 );
@@ -102,5 +103,5 @@ router.get(
 router.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', { 
-    successRedirect: '/private-page',
+    successRedirect: '/main',
     failureRedirect: '/login' }));

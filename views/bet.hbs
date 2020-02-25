@@ -1,0 +1,31 @@
+<p>MOSTRAR APUESTAS DEL JUGADOR</p>
+
+{{#each matches}}
+<p>{{this}}</p>
+
+{{/each}}
+
+<div class="display-scores">
+    <div>
+        {{#each bets}}
+        <p class="user-bets">{{this}}</p>
+
+        {{/each}}
+    </div>
+    <div>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+        <p class="results"></p>
+    </div>
+</div>
+
+
+
+<button id="showResults">CHECK RESULTS</button>

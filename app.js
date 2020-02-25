@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const connectMongo = require('connect-mongo');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -9,6 +10,7 @@ const mongoose = require('mongoose');
 const logger = require('morgan');
 const path = require('path');
 const session = require('express-session');
+const MongoStore = connectMongo(session);
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
@@ -70,7 +72,10 @@ app.use(
   session({
     secret: 'our-passport-local-strategy-app',
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: new MongoStore({
+      url: 'mongodb://localhost/kiniela'
+    }),
   })
 );
 
@@ -135,7 +140,9 @@ passport.use(
           }
 
           User.create({
-              facebookID: profile.id
+              facebookID: profile.id,
+              username: profile.displayName,
+              score: 0
             })
             .then(newUser => {
               done(null, newUser);
@@ -179,7 +186,9 @@ passport.use(
           }
 
           User.create({
-              googleID: profile.id
+              googleID: profile.id,
+              username: profile.displayName,
+              score: 0
             })
             .then(newUser => {
               done(null, newUser);
