@@ -15,6 +15,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require("./models/user");
+const Game = require("./models/game");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 let CronJob = require('cron').CronJob;
@@ -204,11 +205,14 @@ passport.use(
   )
 );
 
+
+
+
 // Schedule game updates
-let job = new CronJob('02 * * * * *', function() {
-  // Execute this every friday at 12,00h
-  // createGame();
-  // console.log("ENTRA")
+let job = new CronJob('45 20 * * 5', function() {
+  // Execute this every friday at 20,45h
+  createGame();
+  
 });
 job.start();
 
@@ -239,8 +243,8 @@ let endDate = startDate.addDays(3);
 startDate = formatDate(startDate)
 endDate = formatDate(endDate)
 
-startDate = "2020-02-25"
-endDate = "2020-02-28"
+// startDate = "2020-02-28"
+// endDate = "2020-03-02"
 
 
 // Call the API
@@ -258,9 +262,35 @@ let createGame = () => {
 
   getApifootball(restApifootball).then(data => {
     if (!data.hasOwnProperty("error")) {
+      let round = data[0].match_round;
+      let matches = data.map(match => {
+        let homeTeam = match.match_hometeam_name;
+        let awayTeam = match.match_awayteam_name;
+        return `${homeTeam} - ${awayTeam}`
+      })
+     
+      let results = [];
+      let users = []
+
+      const newGame = new Game( {
+        round,
+        matches,
+        results,
+        users
+      } )
+      newGame.save()
+          .then((game) => {
+            console.log("Juego creado: " + game)
+          })
+          .catch((game) => {
+            console.log('Error while creating new game', game);
+          })
       
     } 
+
+   
   });
+  
 }
 
-createGame()
+// createGame();
