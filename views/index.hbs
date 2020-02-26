@@ -1,72 +1,21 @@
 <div class="index-form">
+    <form action="/" method="POST">
+    <h2 id="round">{{ round }}</h2>
     {{#each matches}}
-<p>{{this}}</p>
+     <label id="match{{@index}}" class="match">{{this}}</label>
+        <input type="radio" id="bet_{{@index}}_1" name="bet_{{@index}}" value="1">
+        <input type="radio" id="bet_{{@index}}_x" name="bet_{{@index}}" value="X">
+        <input type="radio" id="bet_{{@index}}_2" name="bet_{{@index}}" value="2">
+        <br>
+
     {{/each}}
-    {{!-- <form action="/" method="POST">
-    <h2 id="round"></h2>
-        <label id="match1" class="match"></label>
-        <input type="radio" id="bet_1_1" name="bet_1" value="1">
-        <input type="radio" id="bet_1_x" name="bet_1" value="X">
-        <input type="radio" id="bet_1_2" name="bet_1" value="2">
-        <br>
-        <label id="match2" class="match"></label>
-        <input type="radio" id="bet_2_1" name="bet_2" value="1">
-        <input type="radio" id="bet_2_x" name="bet_2" value="X">
-        <input type="radio" id="bet_2_2" name="bet_2" value="2">
-
-        <br>
-        <label id="match3" class="match"></label>
-        <input type="radio" id="bet_3_1" name="bet_3" value="1">
-        <input type="radio" id="bet_3_x" name="bet_3" value="X">
-        <input type="radio" id="bet_3_2" name="bet_3" value="2">
-        <br>
-
-        <label id="match4" class="match"></label>
-        <input type="radio" id="bet_4_1" name="bet_4" value="1">
-        <input type="radio" id="bet_4_x" name="bet_4" value="X">
-        <input type="radio" id="bet_4_2" name="bet_4" value="2">
-        <br>
-
-        <label id="match5" class="match"></label>
-        <input type="radio" id="bet_5_1" name="bet_5" value="1">
-        <input type="radio" id="bet_5_x" name="bet_5" value="X">
-        <input type="radio" id="bet_5_2" name="bet_5" value="2">
-        <br>
-
-        <label id="match6" class="match"></label>
-        <input type="radio" id="bet_6_1" name="bet_6" value="1">
-        <input type="radio" id="bet_6_x" name="bet_6" value="X">
-        <input type="radio" id="bet_6_2" name="bet_6" value="2">
-        <br>
-
-        <label id="match7" class="match"></label>
-        <input type="radio" id="bet_7_1" name="bet_7" value="1">
-        <input type="radio" id="bet_7_x" name="bet_7" value="X">
-        <input type="radio" id="bet_7_2" name="bet_7" value="2">
-        <br>
-
-        <label id="match8" class="match"></label>
-        <input type="radio" id="bet_8_1" name="bet_8" value="1">
-        <input type="radio" id="bet_8_x" name="bet_8" value="X">
-        <input type="radio" id="bet_8_2" name="bet_8" value="2">
-        <br>
-
-        <label id="match9" class="match"></label>
-        <input type="radio" id="bet_9_1" name="bet_9" value="1">
-        <input type="radio" id="bet_9_x" name="bet_9" value="X">
-        <input type="radio" id="bet_9_2" name="bet_9" value="2">
-        <br>
-
-        <label id="match10" class="match"></label>
-        <input type="radio" id="bet_10_1" name="bet_10" value="1">
-        <input type="radio" id="bet_10_x" name="bet_10" value="X">
-        <input type="radio" id="bet_10_2" name="bet_10" value="2">
-        <br>
+    
+        
         <input type="submit" value="BET">
         <button id="clear">CLEAR</button>
 
         {{!-- Hidden inputs for create the game --}}
-        <input type="hidden" name="round" value="">
+        {{!-- <input type="hidden" name="round" value="">
         <input type="hidden" name="match1" value="">
         <input type="hidden" name="match2" value="">
         <input type="hidden" name="match3" value="">
@@ -76,9 +25,6 @@
         <input type="hidden" name="match7" value="">
         <input type="hidden" name="match8" value="">
         <input type="hidden" name="match9" value="">
-        <input type="hidden" name="match10" value="">
+        <input type="hidden" name="match10" value=""> --}}
     </form>
-
-   
-   
 </div>
