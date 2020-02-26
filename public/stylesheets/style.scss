@@ -19,6 +19,15 @@ a {
   margin-top: 100px;
 }
 
+// Scores 
+
+.display-scores {
+  width: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
 
 
 // Forms styles
