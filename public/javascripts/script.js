@@ -2,8 +2,14 @@
 //   getApifootball(restApifootball)
 // }
 
+let from = document.getElementById("startRound").innerText;
+let to = document.getElementById("endRound").innerText;
+
+console.log(from)
+console.log(to)
+
 const restApifootball = axios.create({
-  baseURL: `https://apiv2.apifootball.com/?action=get_events&from=2020-02-21&to=2020-02-23&country_id=135&league_id=468&APIkey=ce05d1110b0b6ea02a5649e270ed95c243e036dc31a6b0e3f89be14dbe27a160`
+  baseURL: `https://apiv2.apifootball.com/?action=get_events&from=${from}&to=${to}&country_id=135&league_id=468&APIkey=ce05d1110b0b6ea02a5649e270ed95c243e036dc31a6b0e3f89be14dbe27a160`
 })
 
 function getApifootball(restApifootball) {
@@ -16,6 +22,7 @@ function getApifootball(restApifootball) {
 document.getElementById("showResults").addEventListener("click", function () {
   getApifootball(restApifootball).then(data => {
     let homeScore = data.map(match => {
+      console.log(match.match_hometeam_score)
       return match.match_hometeam_score;
     })
 
@@ -25,15 +32,20 @@ document.getElementById("showResults").addEventListener("click", function () {
 
     let scores = []
     for (let i = 0; i < homeScore.length; i++) {
-      if (homeScore[i] > awayScore[i]) {
-        scores.push("1")
+      if (homeScore[i] === "" && awayScore[i] === "") {
+        scores.push("-")
+      } else {
+        if (homeScore[i] > awayScore[i]) {
+          scores.push("1")
+        }
+        if (homeScore[i] < awayScore[i]) {
+          scores.push("2")
+        }
+        if (homeScore[i] === awayScore[i]) {
+          scores.push("X")
+        }
       }
-      if (homeScore[i] < awayScore[i]) {
-        scores.push("2")
-      }
-      if (homeScore[i] === awayScore[i]) {
-        scores.push("X")
-      }
+      
     }
 
     let results = document.getElementsByClassName("results");
