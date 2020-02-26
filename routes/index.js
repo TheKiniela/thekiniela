@@ -34,10 +34,16 @@ router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
-  
-      res.render('index', {
-        user: req.user
-      });
+
+  games.findOne({}, {}, { sort: { 'created_at' : -1 } })
+  .then(game => {
+  let matches = game.matches;
+    res.render('index', {
+      user: req.user,
+      matches
+    });
+  })
+      
     
 });
 

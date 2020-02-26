@@ -15,8 +15,11 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require("./models/user");
+const Game = require("./models/game");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+let CronJob = require('cron').CronJob;
+const axios = require('axios').default;
 
 
 mongoose
@@ -163,6 +166,8 @@ const router = require('./routes/auth-routes');
 app.use('/', router);
 
 
+
+
 module.exports = app;
 
 // Google strategy
@@ -199,3 +204,93 @@ passport.use(
     }
   )
 );
+
+
+
+
+// Schedule game updates
+let job = new CronJob('45 20 * * 5', function() {
+  // Execute this every friday at 20,45h
+  createGame();
+  
+});
+job.start();
+
+
+
+//Get start and end dates
+Date.prototype.addDays = function(days) {
+  let date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+}
+
+let formatDate = (date) => {
+  let day = date.getDate();
+  day = day.toString().padStart(2,"0");
+
+  let month = date.getMonth() + 1;
+  month = month.toString().padStart(2,"0")
+
+  let year = date.getFullYear();
+
+  return `${year}-${month}-${day}`
+}
+
+let startDate = new Date();
+let endDate = startDate.addDays(3);
+
+startDate = formatDate(startDate)
+endDate = formatDate(endDate)
+
+// startDate = "2020-02-28"
+// endDate = "2020-03-02"
+
+
+// Call the API
+let createGame = () => {
+  const restApifootball = axios.create({
+    baseURL: `https://apiv2.apifootball.com/?action=get_events&from=${startDate}&to=${endDate}&country_id=135&league_id=468&APIkey=ce05d1110b0b6ea02a5649e270ed95c243e036dc31a6b0e3f89be14dbe27a160`
+  })
+  
+  function getApifootball(restApifootball) {
+    return restApifootball
+      .get()
+      .then(responseFromAPI => responseFromAPI.data)
+      .catch(err => console.log("Error is: ", err));
+  }
+
+  getApifootball(restApifootball).then(data => {
+    if (!data.hasOwnProperty("error")) {
+      let round = data[0].match_round;
+      let matches = data.map(match => {
+        let homeTeam = match.match_hometeam_name;
+        let awayTeam = match.match_awayteam_name;
+        return `${homeTeam} - ${awayTeam}`
+      })
+     
+      let results = [];
+      let users = []
+
+      const newGame = new Game( {
+        round,
+        matches,
+        results,
+        users
+      } )
+      newGame.save()
+          .then((game) => {
+            console.log("Juego creado: " + game)
+          })
+          .catch((game) => {
+            console.log('Error while creating new game', game);
+          })
+      
+    } 
+
+   
+  });
+  
+}
+
+// createGame();

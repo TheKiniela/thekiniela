@@ -7,7 +7,6 @@ const gameSchema = new Schema(
       matches: Array,
       results: Array,
       users: Array
-      
     },
     {
       timestamps: {
