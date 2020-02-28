@@ -6,7 +6,9 @@ const gameSchema = new Schema(
       round: String,
       matches: Array,
       results: Array,
-      users: Array
+      users: Array,
+      startRound: String,
+      endRound: String
     },
     {
       timestamps: {
