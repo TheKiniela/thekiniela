@@ -41,6 +41,7 @@ router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 });
 
 router.get('/', (req, res, next) => {
+
 console.log(req.user._id)
   games.findOne({}, {}, {
       sort: {
@@ -82,6 +83,9 @@ console.log(req.user._id)
             bets2: bets2 ? bets2.bets : []
           })
         })
+
+
+  
     });
 });
 
@@ -221,5 +225,6 @@ router.post('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 //   res.render("edit")
 // })
 
+/* DELETE INGREDIENT list page */;
 
-module.exports = router;
+module.exports = router

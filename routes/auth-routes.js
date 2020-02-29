@@ -52,9 +52,11 @@ router.post('/signup', (req, res, next) => {
         score: 0
       });
 
-      return newUser.save();
-    })
-    .then(() => {
+       newUser.save();
+
+      req.login(newUser, () => {
+        return res.redirect("/");
+      });
       res.redirect('/');
     })
     .catch(error => {
@@ -105,3 +107,11 @@ router.get(
   passport.authenticate('facebook', { 
     successRedirect: '/main',
     failureRedirect: '/login' }));
+
+
+    //router.post('/delete/:id', (req, res, next) => {
+      //const { id } = req.params;
+      //console.log(id)
+
+      //res.render('auth/login');
+    //});
