@@ -24,6 +24,7 @@ router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
             let startRound = game.startRound;
             let endRound = game.endRound;
             console.log(endRound + " end round")
+
             res.render('bet', {
               user: req.user,
               matches,
@@ -42,51 +43,70 @@ router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 router.get('/', (req, res, next) => {
 
-console.log(req.user._id)
+if (req.user) {
   games.findOne({}, {}, {
+    sort: {
+      'created_at': -1
+    }
+  })
+  .then(game => {
+    let matches = game.matches;
+    let round = game.round;
+    let startRound = game.startRound;
+    let endRound = game.endRound;
+
+    games.findOne({}, {}, {    
+        sort: {
+          'created_at': -1
+        },
+        skip: 1
+      })
+      .then(game2 => {
+        
+          let bets2 = game2.users.find(e => {
+            return e.userID.toString() === req.user._id.toString()
+          });
+        console.log(game2)
+        let matches2 = game2.matches;
+        let round2 = game2.round;
+        let startRound2 = game2.startRound;
+        let endRound2 = game2.endRound;
+        res.render('index', {
+          user: req.user,
+          matches,
+          round,
+          startRound,
+          endRound,
+          matches2,
+          round2,
+          startRound2,
+          endRound2,
+          bets2: bets2 ? bets2.bets : []
+        })
+      })
+    });
+
+  } else {
+    games.findOne({}, {}, {
       sort: {
         'created_at': -1
       }
     })
     .then(game => {
+
       let matches = game.matches;
       let round = game.round;
-      let startRound = game.startRound;
-      let endRound = game.endRound;
-
-      games.findOne({}, {}, {    
-          sort: {
-            'created_at': -1
-          },
-          skip: 1
-        })
-        .then(game2 => {
-          
-            let bets2 = game2.users.find(e => {
-              return e.userID.toString() === req.user._id.toString()
-            });
-          console.log(game2)
-          let matches2 = game2.matches;
-          let round2 = game2.round;
-          let startRound2 = game2.startRound;
-          let endRound2 = game2.endRound;
-          res.render('index', {
-            user: req.user,
-            matches,
-            round,
-            startRound,
-            endRound,
-            matches2,
-            round2,
-            startRound2,
-            endRound2,
-            bets2: bets2 ? bets2.bets : []
-          })
-        })
+      console.log(matches, round)
+    return res.render('index', {
+      matches,
+      round
+    });
+  })
+}
 
 
   
-    });
+    
 });
 
 

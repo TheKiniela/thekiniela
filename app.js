@@ -25,7 +25,8 @@ const axios = require('axios').default;
 mongoose
   // .connect('mongodb://localhost/kiniela-user', {useNewUrlParser: true})
   .connect('mongodb://localhost/kiniela', {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
@@ -357,4 +358,4 @@ let createGame = () => {
   
 }
 
- createGame();
+//  createGame();
