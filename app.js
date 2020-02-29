@@ -96,6 +96,12 @@ passport.deserializeUser((id, callback) => {
     });
 });
 
+//passport.serializeUser((user, callback) => {
+  //callback(null, user._id);
+  //user.visits += 1;
+  //user.save();
+//});
+
 // Common login strategy
 passport.use(
   new LocalStrategy((username, password, callback) => {
@@ -351,4 +357,4 @@ let createGame = () => {
   
 }
 
-// createGame();
+ createGame();
