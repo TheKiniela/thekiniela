@@ -1,40 +1,208 @@
-<p>MOSTRAR APUESTAS DEL JUGADOR</p>
-<p id="startRound">{{ startRound }}</p>
-<p id="endRound">{{ endRound }}</p>
+<div class="main-container">
+  <div class="row no-gutters">
 
-{{#each matches}}
-<p>{{this}}</p>
+    <!-- LEFT COLUMN -->
+    <div class="col-lg-4">
+      <div class="head-left column">
+        <h2 id="round" class="round-left">{{ round }}</h2>&nbsp;&nbsp;
+        <img src="images/laliga.png" alt="">
+      </div>
+      <div class="body-left column">
+        <div class="row">
+          <div class="col-lg-8">
+            {{#each matches}}
 
-{{/each}}
+            <div class="match">
+              <p><img width="18" height="auto" src="images/data-btn.png" alt="">{{this}}</p>
+            </div>
+            {{/each}}
 
-<div class="display-scores">
-    <div>
-        {{#each bets}}
-        <p class="user-bets">{{this}}</p>
+          </div>
+          <div class="col-lg-4 text-center">
+            {{#each bets}}
 
-        {{/each}}
+            <p><b>{{this}}</b></p>
+
+            {{/each}}
+          </div>
+
+
+        </div>
+
+
+
+        <div class="buttons-left">
+          <form action="/delete" method="POST">
+              <input class="main-button button" type="submit" value="REMOVE">
+          </form>
+          
+          {{!-- <form method="POST" action="/">
+            <input class="main-button button" type="submit" value="REMOVE">
+          </form> --}}
+        </div>
+
+
+      </div>
     </div>
-    <div>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
-        <p class="results"></p>
+
+    <!-- CENTER COLUMN -->
+    <div class="col-lg-4 col-center">
+      <div class="head-center column">
+        <img src="images/data.png" alt="">
+        <h2>DATA</h2>
+      </div>
+      <div class="body-center column">
+        <div class="match-data">
+          <div class="match-data-text">
+            <p>MATCH 1</p>
+            <p>Real Sociedad - Valladolid</p>
+          </div>
+          <div class="match-data-img">
+            <img src="" alt="">
+            <p>vs</p>
+            <img src="" alt="">
+          </div>
+        </div>
+
+        <br>
+        <p>
+          <b>Día:</b> 12-02-2020<br>
+          <b>Hora:</b> 21:00<br>
+          <b>Stadium:</b> Anoeta<br>
+          <b>Referee:</b> Undiano Mallenco<br>
+        </p>
+        <div class="row prob">
+          <div class="col-lg-4 item-prob left-prob">1</div>
+          <div class="col-lg-4 item-prob">X</div>
+          <div class="col-lg-4 item-prob right-prob">2</div>
+        </div>
+        <div class="row prob-data">
+          <div class="col-lg-4 data-prob left-prob">60%</div>
+          <div class="col-lg-4 data-prob">30%</div>
+          <div class="col-lg-4 data-prob right-prob">10%</div>
+        </div>
+        <div class="h2h">
+          <p>LAST GAMES BETWEEN THEM</p>
+        </div>
+        <div class="row last-games">
+          <div class="col-lg-9 text-left">
+            <p>Valladolid - Real Sociedad</p>
+            <p>Real Sociedad - Valladolid</p>
+            <p>Valladolid - Real Sociedad</p>
+            <p>Real Sociedad - Valladolid</p>
+            <p>Valladolid - Real Sociedad</p>
+          </div>
+          <div class="col-lg-3 scores-lg text-left">
+            <p>3 - 2</p>
+            <p>1 - 1</p>
+            <p>2 - 1</p>
+            <p>0 - 2</p>
+            <p>0 - 0</p>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <!-- RIGHT COLUMN -->
+    <p id="startRound">{{ startRound2 }}</p>
+    <p id="endRound">{{ endRound2 }}</p>
+    <div class="col-lg-4 col-right">
+      <div class="head-right column">
+        <div class="last-kiniela">
+          <h2>LAST KINIELA</h2>
+        </div>
+        <div class="last-k-round">
+          <h2 id="last-round" class="round-left">{{ lastround }}Round 24</h2>&nbsp;&nbsp;
+          <img src="images/laliga.png" alt="">
+        </div>
+
+      </div>
+      <div class="body-right column">
+        <div class="row">
+          <div class="col-lg-6"></div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-4 text-center res-head">
+                <p>BET</p>
+              </div>
+              <div class="col-lg-4 text-center res-head">
+                <p>RES.</p>
+              </div>
+              <div class="col-lg-4 text-center res-head">
+                <p>POINTS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            {{#each matches2}}
+            <p class="matches2">{{this}}</p>
+            {{/each}}
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-lg-4 text-center">
+                {{#if bets2}}
+                {{#each bets2}}
+                <p class="matches2 user-bets">{{this}}</p>
+                {{/each}}
+                {{else}}
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                 <p class="matches2 user-bets">-</p>
+                {{/if}}
+              </div>
+              <div class="col-lg-4 text-center">
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+                <p class="matches2 results"></p>
+              </div>
+              <div class="col-lg-4 text-center">
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+                <p class="matches2 points"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="total">
+          <p class="totals">TOTAL: <span id="total-data" class="total-data">0</span></p>
+          <p class="totals">GLOBAL: <span id="global-data" class="global-data">0</span></span></p>
+        </div>
+
+        <div class="buttons-left">
+          <button class="main-button button" id="check">CHECK</button>
+         
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
 </div>
-
-
-
-<button id="showResults">CHECK RESULTS</button>
-
-<form action="/delete/{{user.id}}" method="POST" id="">
-  
-  <button type="submit">
-    Delete
-  </button>
-</form>

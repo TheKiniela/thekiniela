@@ -1,14 +1,14 @@
 // window.onload = function(){
 //   getApifootball(restApifootball)
 // }
-
+let totalPoints = 0;
 let from = document.getElementById("startRound").innerText;
 let to = document.getElementById("endRound").innerText;
 
 
 
 const restApifootball = axios.create({
-  baseURL: `https://apiv2.apifootball.com/?action=get_events&from=${from}&to=${to}&country_id=135&league_id=468&APIkey=ce05d1110b0b6ea02a5649e270ed95c243e036dc31a6b0e3f89be14dbe27a160`
+  baseURL: `https://apiv2.apifootball.com/?action=get_events&from=${from}&to=${to}&country_id=135&league_id=468&APIkey=cb3fb22f77cddb8834401c2aa8adc08f5ed3245cb4fb9ac5ebd5a5986919c478`
 })
 
 function getApifootball(restApifootball) {
@@ -18,10 +18,10 @@ function getApifootball(restApifootball) {
     .catch(err => console.log("Error is: ", err));
 }
 
-document.getElementById("showResults").addEventListener("click", function () {
+document.getElementById("check").addEventListener("click", function () {
   getApifootball(restApifootball).then(data => {
     let homeScore = data.map(match => {
-      console.log(match.match_hometeam_score)
+     
       return match.match_hometeam_score;
     })
 
@@ -54,17 +54,29 @@ document.getElementById("showResults").addEventListener("click", function () {
 
     let userBets = document.getElementsByClassName("user-bets");
     console.log(userBets)
-
     let successes = [];
     for (let i = 0; i < results.length; i++) {
-      if (userBets[i].innerText === results[i].innerText) {
-        successes.push(true);
-      } else {
-        successes.push(false);
-      }
+        if (userBets[i].innerText === results[i].innerText) {
+          successes.push(true);
+        } else {
+          successes.push(false);
+        }
     }
 
     console.log(successes)
+    
+    let points = document.getElementsByClassName("points");
+    for (let i = 0; i < points.length; i++) {
+      if (successes[i] === false) {
+        points[i].innerText = "-";
+      } else {
+        points[i].innerText = "+ 1";
+        totalPoints++;
+      }
+    }
+
+    document.getElementById("total-data").innerText = totalPoints;
+    
     
   })
   

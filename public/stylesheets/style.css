@@ -1,6 +1,7 @@
 * {
   font-family: 'Poppins', Helvetica, Arial, sans-serif;
-  color: #6FFFE9; }
+  color: #6FFFE9;
+  font-size: 15px; }
 
 body {
   margin: 0;
@@ -115,6 +116,9 @@ nav {
   justify-content: space-between;
   align-items: center; }
 
+.bets-left {
+  width: 50px; }
+
 .head-center {
   background-color: #0D1836;
   display: flex;
@@ -212,6 +216,20 @@ nav {
 .res-head p {
   font-size: 14px;
   color: #5BC0BE; }
+
+.totals {
+  font-size: 15px;
+  color: #5BC0BE;
+  text-align: right; }
+
+.global-data, .total-data {
+  font-weight: bold; }
+
+#total-data {
+  font-size: 20px; }
+
+.global-data {
+  font-size: 30px; }
 
 .buttons-left {
   display: flex;

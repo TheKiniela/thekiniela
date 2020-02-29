@@ -16,6 +16,7 @@ $darkSix: #101935;
 * {
   font-family: 'Poppins', Helvetica, Arial, sans-serif;
   color: $primaryLight;
+  font-size: 15px;
 }
 
 body {
@@ -132,9 +133,7 @@ nav {
   h2 {
     color: $secondaryLight;
   }
-  
 }
-
 
 
 .match img {
@@ -161,6 +160,10 @@ nav {
   @include flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.bets-left {
+  width: 50px;
 }
 
 // Column center
@@ -285,6 +288,25 @@ font-weight: bold;
 .res-head p {
   font-size: 14px;
   color: $secondaryLight;
+}
+
+
+.totals {
+  font-size: 15px;
+  color: $secondaryLight;
+  text-align: right;
+}
+
+.global-data, .total-data {
+  font-weight: bold;
+}
+
+#total-data {
+  font-size: 20px;
+}
+
+.global-data {
+  font-size: 30px;
 }
 
 // Buttons
