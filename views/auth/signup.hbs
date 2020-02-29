@@ -22,30 +22,25 @@
 
 
 <div class="form-container mt-5">
-  <form class="form-signin" action="/signup" method="POST">
+  <form class="form-signin" action="/login" method="POST">
     <div class="text-center mb-4">
-      <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">☁ <br><br>Sign Up</h1>
+      <img class="kiniela-logo" src="images/kiniela-logo.png" alt="" width="72" height="72">
       {{!-- <p>Edit this celebrity using this beautiful form<br>made with ♥ and Bootstrap.</p> --}}
     </div>
 
     <div class="form-label-group">
-      <input type="text" name="username" class="form-control" placeholder="Name" required
+      <input type="text" name="username" class="form-control" placeholder="Username" required
         autofocus>
-      <label for="username">Name</label>
+      <label for="username"></label>
     </div>
 
     <div class="form-label-group">
       <input type="password" name="password" class="form-control" placeholder="Password"
          required autofocus>
-      <label for="password">Password</label>
+      <label for="password"></label>
     </div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">SIGN UP</button>
-    <p class="account-message mt-2 text-center">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
-    <p class="mt-5 mb-3 text-muted text-center">&copy; Iván Herranz</p>
+    <button class="btn-for-login" type="submit">SIGN UP</button>
+    <p class="btn-for-login-text">LOG IN</p>
   </form>
 </div>

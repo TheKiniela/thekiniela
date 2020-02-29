@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <form action="/" method="POST">
-                
+
                     {{#each matches}}
                     <div class="match-container">
                         <div class="match">
@@ -110,7 +110,7 @@
                         <p>0 - 0</p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
 
@@ -119,13 +119,13 @@
         <p id="endRound">{{ endRound2 }}</p>
         <div class="col-lg-4 col-right">
             <div class="head-right column">
-               <div class="last-kiniela">
-                   <h2>LAST KINIELA</h2>
-               </div> 
-               <div class="last-k-round">
-                   <h2 id="last-round" class="round-left">{{ lastround }}Round 24</h2>&nbsp;&nbsp;
-                <img src="images/laliga.png" alt="">
-               </div>
+                <div class="last-kiniela">
+                    <h2>LAST KINIELA</h2>
+                </div>
+                <div class="last-k-round">
+                    <h2 id="last-round" class="round-left">{{ lastround }}Round 24</h2>&nbsp;&nbsp;
+                    <img src="images/laliga.png" alt="">
+                </div>
 
             </div>
             <div class="body-right column">
@@ -149,21 +149,21 @@
                 <div class="row">
                     <div class="col-lg-6">
                         {{#each matches2}}
-                            <p class="matches2">{{this}}</p>
+                        <p class="matches2">{{this}}</p>
                         {{/each}}
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
                             <div class="col-lg-4">
                                 {{#each bets2}}
-                                    <p class="matches2">{{this}}</p>
+                                <p class="matches2">{{this}}</p>
                                 {{/each}}
                             </div>
                             <div class="col-lg-4">
-                                
+
                             </div>
                             <div class="col-lg-4">
-                                
+
                             </div>
                         </div>
                     </div>
@@ -176,8 +176,17 @@
         {{else}}
         <!-- PARA PINTAR EL INDEX -->
         <div class="col-lg-8">
+            <div class="logo-kiniela">
+                <img src="images/kiniela-logo-big.png" alt="" class="kiniela-logo-big">
+                <p> Nobody knows more than football than you!</p>
+                <div class="login-button">
+                    <button class="btn-login">LOG IN</button>
+                </div>
+                <div class="sign-up-button">
+                    <button class="btn-signup">SIGN UP</button>
+                </div>
+            </div>
 
-            <p>SE VE SIEMPRE</p>
         </div>
 
 
