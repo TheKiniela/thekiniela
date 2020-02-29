@@ -1,6 +1,7 @@
 <div class="main-container">
     <div class="row no-gutters">
 
+        <!-- LEFT COLUMN -->
         <div class="col-lg-4">
             <div class="head-left column">
                 <h2 id="round" class="round-left">{{ round }}</h2>&nbsp;&nbsp;
@@ -53,6 +54,7 @@
         </div>
 
         {{#if user}}
+        <!-- CENTER COLUMN -->
         <div class="col-lg-4 col-center">
             <div class="head-center column">
                 <img src="images/data.png" alt="">
@@ -110,6 +112,10 @@
                 
             </div>
         </div>
+
+        <!-- RIGHT COLUMN -->
+        <p id="startRound">{{ startRound2 }}</p>
+        <p id="endRound">{{ endRound2 }}</p>
         <div class="col-lg-4 col-right">
             <div class="head-right column">
                <div class="last-kiniela">
@@ -141,14 +147,16 @@
 
                 <div class="row">
                     <div class="col-lg-6">
-                        {{#each last-matches}}
-                            <p>{{this}}</p>
+                        {{#each matches2}}
+                            <p class="matches2">{{this}}</p>
                         {{/each}}
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
                             <div class="col-lg-4">
-
+                                {{#each bets2}}
+                                    <p class="matches2">{{this}}</p>
+                                {{/each}}
                             </div>
                             <div class="col-lg-4">
                                 

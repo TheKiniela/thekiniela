@@ -5,31 +5,34 @@ const ensureLogin = require('connect-ensure-login');
 
 /* GET home page */
 router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  
-    let userId = req.user._id;
-    games.findOne({"users.userID": userId})
+
+  let userId = req.user._id;
+  games.findOne({
+      "users.userID": userId
+    })
     .then(game => {
       if (game !== null) {
         let bets = game.users.find(e => {
           return e.userID.toString() === req.user._id.toString()
         }).bets;
-        
-        games.findOne({"users.userID": userId})
-        .then((game => {
-          let matches = game.matches;
-          
-          let startRound = game.startRound;
-          let endRound = game.endRound;
-          console.log(endRound + " end round")
-          res.render('bet', {
-            user: req.user,
-            matches,
-            bets,
-            startRound,
-            endRound
+
+        games.findOne({
+            "users.userID": userId
           })
-        }))
-        
+          .then((game => {
+            let matches = game.matches;
+            let startRound = game.startRound;
+            let endRound = game.endRound;
+            console.log(endRound + " end round")
+            res.render('bet', {
+              user: req.user,
+              matches,
+              bets,
+              startRound,
+              endRound
+            })
+          }))
+
       } else {
         res.redirect("/");
       }
@@ -39,18 +42,53 @@ router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
 router.get('/', (req, res, next) => {
 
-  games.findOne({}, {}, { sort: { 'created_at' : -1 } })
-  .then(game => {
-    console.log(game)
-  let matches = game.matches;
-  let round = game.round;
-    res.render('index', {
-      user: req.user,
-      matches,
-      round
+console.log(req.user._id)
+  games.findOne({}, {}, {
+      sort: {
+        'created_at': -1
+      }
+    })
+    .then(game => {
+      let matches = game.matches;
+      let round = game.round;
+      let startRound = game.startRound;
+      let endRound = game.endRound;
+
+      games.findOne({}, {}, {    
+          sort: {
+            'created_at': -1
+          },
+          skip: 1
+        })
+        .then(game2 => {
+          
+            let bets2 = game2.users.find(e => {
+              return e.userID.toString() === req.user._id.toString()
+            });
+          console.log(game2)
+          let matches2 = game2.matches;
+          let round2 = game2.round;
+          let startRound2 = game2.startRound;
+          let endRound2 = game2.endRound;
+          res.render('index', {
+            user: req.user,
+            matches,
+            round,
+            startRound,
+            endRound,
+            matches2,
+            round2,
+            startRound2,
+            endRound2,
+            bets2: bets2 ? bets2.bets : []
+          })
+        })
+
+
+  
     });
-  }) 
 });
+
 
 
 
@@ -104,74 +142,78 @@ router.post('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
   //   match10
   // ]
 
-  games.findOne({}, {}, { sort: { 'created_at' : -1 } })
-  .then(game => {
-    if (game !== null) {
-      if (!game.users.find(e => {
-        return e.userID.toString() === req.user._id.toString()
-      })) {
-      games.update({
-        _id: game._id
-      }, {
-        $push: {
-          users: newUser
+  games.findOne({}, {}, {
+      sort: {
+        'created_at': -1
+      }
+    })
+    .then(game => {
+      if (game !== null) {
+        if (!game.users.find(e => {
+            return e.userID.toString() === req.user._id.toString()
+          })) {
+          games.update({
+            _id: game._id
+          }, {
+            $push: {
+              users: newUser
+            }
+
+          }).then(() => {
+            let bets = newUser.bets
+            res.redirect("/main")
+          })
         }
-        
-      }).then(() => {
-        let bets = newUser.bets
-        res.redirect("/main")
-      })
-    }
-    }
-  });
+      }
+    });
 });
 
-  // games.findOne({
-  //     'round': req.body.round
-  //   })
-  //   .then(game => {
-  //     console.log(req.body.round)
-      
-  //     if (game !== null) {
+// games.findOne({
+//     'round': req.body.round
+//   })
+//   .then(game => {
+//     console.log(req.body.round)
 
-  //       if (!game.users.find(e => {
-  //           return e.userID.toString() === req.user._id.toString()
-  //         })) {
-  //         games.update({
-  //           _id: game._id
-  //         }, {
-  //           $push: {
-  //             users: newUser
-  //           }
-            
-  //         }).then(() => {
-  //           let bets = newUser.bets
-  //           res.redirect("/main")
-  //         })
-  //       } else {
-         
-          
-          
-  //         return res.redirect("/")
-  //       }
-  //     } 
-      
-      // else {
-      //   const newGame = new games({
-      //     round,
-      //     matches,
-      //     results,
-      //     users: [newUser]
-      //   })
-      //   newGame.save()
-      //     .then((games) => {
-      //       res.redirect('/');
-      //     })
-      //     .catch((error) => {
-      //       console.log('Error while creating new game');
-      //       res.render("/");
-      //     })
-      // }
+//     if (game !== null) {
+
+//       if (!game.users.find(e => {
+//           return e.userID.toString() === req.user._id.toString()
+//         })) {
+//         games.update({
+//           _id: game._id
+//         }, {
+//           $push: {
+//             users: newUser
+//           }
+
+//         }).then(() => {
+//           let bets = newUser.bets
+//           res.redirect("/main")
+//         })
+//       } else {
+
+
+
+//         return res.redirect("/")
+//       }
+//     } 
+
+// else {
+//   const newGame = new games({
+//     round,
+//     matches,
+//     results,
+//     users: [newUser]
+//   })
+//   newGame.save()
+//     .then((games) => {
+//       res.redirect('/');
+//     })
+//     .catch((error) => {
+//       console.log('Error while creating new game');
+//       res.render("/");
+//     })
+// }
 
 //     })
 //   // .catch(error => {

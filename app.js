@@ -255,8 +255,8 @@ let endDate = startDate.addDays(2);
 startDate = formatDate(startDate)
 endDate = formatDate(endDate)
 
-startDate = "2020-02-28"
-endDate = "2020-03-02"
+startDate = "2020-03-06"
+endDate = "2020-03-08"
 
 
 // check scores
