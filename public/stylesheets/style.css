@@ -186,6 +186,13 @@ nav {
 .scores-lg p {
   font-weight: bold; }
 
+#startRound, #endRound {
+  display: none; }
+
+.matches2 {
+  font-size: 14px;
+  color: #5BC0BE; }
+
 .last-kiniela h2, .last-k-round h2 {
   color: #5BC0BE; }
 

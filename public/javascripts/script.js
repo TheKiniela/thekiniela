@@ -5,8 +5,7 @@
 let from = document.getElementById("startRound").innerText;
 let to = document.getElementById("endRound").innerText;
 
-console.log(from)
-console.log(to)
+
 
 const restApifootball = axios.create({
   baseURL: `https://apiv2.apifootball.com/?action=get_events&from=${from}&to=${to}&country_id=135&league_id=468&APIkey=ce05d1110b0b6ea02a5649e270ed95c243e036dc31a6b0e3f89be14dbe27a160`

@@ -255,6 +255,15 @@ font-weight: bold;
 }
 
 // Column right 
+#startRound, #endRound {
+  display: none;
+}
+
+.matches2 {
+  font-size: 14px;
+  color: $secondaryLight;
+}
+
 .last-kiniela h2, .last-k-round h2 {
   color: $secondaryLight;
 }
