@@ -41,6 +41,7 @@ router.get('/', (req, res, next) => {
 
   games.findOne({}, {}, { sort: { 'created_at' : -1 } })
   .then(game => {
+    console.log(game)
   let matches = game.matches;
   let round = game.round;
     res.render('index', {
@@ -182,5 +183,6 @@ router.post('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 //   res.render("edit")
 // })
 
+/* DELETE INGREDIENT list page */;
 
-module.exports = router;
+module.exports = router
