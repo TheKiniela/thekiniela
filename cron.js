@@ -44,8 +44,7 @@ let jobCreateGame = new CronJob('45 20 * * 5', function() {
   startDate = formatDate(startDate)
   endDate = formatDate(endDate)
   
-  startDate = "2020-02-14"
-  endDate = "2020-02-16"
+  
   
   
   // check scores
@@ -146,5 +145,8 @@ let jobCreateGame = new CronJob('45 20 * * 5', function() {
     });
     
   }
+
+  startDate = "2020-02-21"
+  endDate = "2020-02-23"
   
-// createGame();
+//createGame();

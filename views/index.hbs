@@ -20,7 +20,7 @@
                     {{#each matches}}
                     <div class="match-container">
                         <div class="match">
-                            <p><img width="18" height="auto" src="images/data-btn.png" alt="">{{this}}</p>
+                            <p id="match{{@index}}"><img class="datamatch" id="datamatch{{@index}}" width="18" height="auto" src="images/data-btn.png" alt="">{{this}}</p>
                         </div>
 
                         <div class="radio-set">
@@ -37,16 +37,13 @@
                                 <label for="bet_{{@index}}_2"></label>
                             </div>
                         </div>
-                        {{!-- <label id="match{{@index}}" class="match">{{this}}</label>
-                    <input class="radio" type="radio" id="bet_{{@index}}_1" name="bet_{{@index}}" value="1">
-                    <input class="radio" type="radio" id="bet_{{@index}}_x" name="bet_{{@index}}" value="X">
-                    <input class="radio" type="radio" id="bet_{{@index}}_2" name="bet_{{@index}}" value="2"> --}}
+                      
                     </div>
 
 
                     {{/each}}
                     <div class="buttons-left">
-                        <button class="secondary-button button" id="clear">CLEAR</button>
+                        <div class="secondary-button button text-center" id="clear">RESTORE</div>
                         <input class="main-button button" type="submit" value="BET">
                     </div>
 
@@ -55,68 +52,119 @@
         </div>
 
         {{#if user}}
-        <!-- CENTER COLUMN -->
-        <div class="col-lg-4 col-center">
-            <div class="head-center column">
-                <img src="images/data.png" alt="">
-                <h2>DATA</h2>
-            </div>
-            <div class="body-center column">
-                <div class="match-data">
-                    <div class="match-data-text">
-                        <p>MATCH 1</p>
-                        <p>Real Sociedad - Valladolid</p>
-                    </div>
-                    <div class="match-data-img">
-                        <img src="" alt="">
-                        <p>vs</p>
-                        <img src="" alt="">
-                    </div>
-                </div>
-
-                <br>
-                <p>
-                    <b>Día:</b> 12-02-2020<br>
-                    <b>Hora:</b> 21:00<br>
-                    <b>Stadium:</b> Anoeta<br>
-                    <b>Referee:</b> Undiano Mallenco<br>
-                </p>
-                <div class="row prob">
-                    <div class="col-lg-4 item-prob left-prob">1</div>
-                    <div class="col-lg-4 item-prob">X</div>
-                    <div class="col-lg-4 item-prob right-prob">2</div>
-                </div>
-                <div class="row prob-data">
-                    <div class="col-lg-4 data-prob left-prob">60%</div>
-                    <div class="col-lg-4 data-prob">30%</div>
-                    <div class="col-lg-4 data-prob right-prob">10%</div>
-                </div>
-                <div class="h2h">
-                    <p>LAST GAMES BETWEEN THEM</p>
-                </div>
-                <div class="row last-games">
-                    <div class="col-lg-9 text-left">
-                        <p>Valladolid - Real Sociedad</p>
-                        <p>Real Sociedad - Valladolid</p>
-                        <p>Valladolid - Real Sociedad</p>
-                        <p>Real Sociedad - Valladolid</p>
-                        <p>Valladolid - Real Sociedad</p>
-                    </div>
-                    <div class="col-lg-3 scores-lg text-left">
-                        <p>3 - 2</p>
-                        <p>1 - 1</p>
-                        <p>2 - 1</p>
-                        <p>0 - 2</p>
-                        <p>0 - 0</p>
-                    </div>
-                </div>
-
-            </div>
+         <!-- CENTER COLUMN -->
+    <div class="col-lg-4 col-center">
+      <div class="head-center column">
+        <img src="images/data.png" alt="">
+        <h2>DATA</h2>
+      </div>
+      <div class="body-center column">
+        <div class="match-data">
+          <div class="match-data-text">
+            <p>MATCH <span id="match-number"></span></p>
+            <p id="match-teams"></p>
+          </div>
+          <div class="match-data-img">
+            <img width="50" height="auto" id="home-badge" src="" alt="">
+            <p>vs</p>
+            <img width="50" height="auto" id="away-badge" src="" alt="">
+          </div>
         </div>
 
+        <br>
+        <p>
+          <b>Day: </b><span id="day"></span><br>
+          <b>Hour: </b><span id="time"></span><br>
+          <b>Stadium: </b><span id="stadium"></span><br>
+          <b>Referee: </b><span id="referee"></span><br>
+        </p>
+        <div class="row prob">
+          <div class="col-lg-4 item-prob left-prob">1</div>
+          <div class="col-lg-4 item-prob">X</div>
+          <div class="col-lg-4 item-prob right-prob">2</div>
+        </div>
+        <div class="row prob-data">
+          <div class="col-lg-4 data-prob left-prob"><span id="one"></span>%</div>
+          <div class="col-lg-4 data-prob"><span id="x"></span>%</div>
+          <div class="col-lg-4 data-prob right-prob"><span id="two"></span>%</div>
+        </div>
+         <button id="lg" class="lg-btn secondary-button button">LAST GAMES</button>
+                <div id="games-info" class="games-info">
+                    <div class="lg">
+                        <div class="h2h">
+                            <p>Last Games Between Them</p>
+                        </div>
+
+                        <div class="row last-games">
+                            {{!-- <div class="col-lg-4 text-left">
+            <p class="hh-date"></p>
+            <p class="hh-date"></p>
+           
+          </div> --}}
+                            <div class="col-lg-8 text-left">
+                                <p class="hh-teams"></p>
+                                <p class="hh-teams"></p>
+
+                            </div>
+                            <div class="col-lg-4 scores-lg text-left">
+                                <p class="hh-scores"></p>
+                                <p class="hh-scores"></p>
+
+                            </div>
+                        </div>
+                        <div class="h2h">
+                            <p>Last Games <span id="ht-lg"></span></p>
+                        </div>
+                        <div class="row last-games">
+                            {{!-- <div class="col-lg-4 text-left">
+            <p class="hh-date"></p>
+            <p class="hh-date"></p>
+           
+          </div> --}}
+                            <div class="col-lg-8 text-left">
+                                <p class="htlg-teams"></p>
+                                <p class="htlg-teams"></p>
+                                <p class="htlg-teams"></p>
+                            </div>
+                            <div class="col-lg-4 scores-lg text-left">
+                                <p class="htlg-scores"></p>
+                                <p class="htlg-scores"></p>
+                                <p class="htlg-scores"></p>
+                            </div>
+                        </div>
+                        <div class="h2h">
+                            <p>Last Games <span id="at-lg"></span></p>
+                        </div>
+                        <div class="row last-games">
+                            {{!-- <div class="col-lg-4 text-left">
+            <p class="hh-date"></p>
+            <p class="hh-date"></p>
+           
+          </div> --}}
+                            <div class="col-lg-8 text-left">
+                                <p class="atlg-teams"></p>
+                                <p class="atlg-teams"></p>
+                                <p class="atlg-teams"></p>
+                            </div>
+                            <div class="col-lg-4 scores-lg text-left">
+                                <p class="atlg-scores"></p>
+                                <p class="atlg-scores"></p>
+                                <p class="atlg-scores"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+
+      </div>
+    </div>
+
         <!-- RIGHT COLUMN -->
-        <p id="startRound">{{ startRound2 }}</p>
-        <p id="endRound">{{ endRound2 }}</p>
+         <p id="startRound1">{{ startRound }}</p>
+    <p id="endRound1">{{ endRound }}</p>
+    <p id="startRound2">{{ startRound2 }}</p>
+    <p id="endRound2">{{ endRound2 }}</p>
+       
         <div class="col-lg-4 col-right">
             <div class="head-right column">
                 <div class="last-kiniela">
@@ -203,13 +251,14 @@
 
 
         <div class="total">
-          <p class="totals">TOTAL: <span id="total-data" class="total-data">0</span></p>
-          <p class="totals">GLOBAL: <span id="global-data" class="global-data">0</span></span></p>
+          <p class="totals">TOTAL: <span id="total-data" class="global-data">0</span></p>
+          {{!-- <p class="totals">GLOBAL: <span id="global-data" class="global-data">0</span></span></p> --}}
         </div>
 
-                <div class="buttons-left">
-                    <button class="main-button button" id="check">CHECK</button>
-                </div>
+        <div class="buttons-right">
+          <button class="secondary-button button" id="check">RANKING</button>
+         
+        </div>
 
             </div>
         </div>
