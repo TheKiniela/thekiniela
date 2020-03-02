@@ -11,3 +11,14 @@ let jobCreateGame = new CronJob('00 21 * * 5', function() {
   });
   jobCreateGame.start();
 ```
+Para cotejar resultados de usuarios, Kiniela se sirve de la API APIfootball. Al cargar la página, ejecuta una función que compara los datos del usuario con los resultados reales y suma 1 punto si son iguales.
+
+## Dashboard
+
+El dashboard de Kiniela se divide en tres:
+
+- Primera columna: muestra los la Kiniela de la semana y permite al usuario hacer sus apuestas mediante un form con radio buttons que guardarán en la base de datos un array compuesto por 10 valores entre 1, X o 2.
+
+- Segunda columna: muestra datos de la API APIfootball para ayudar al ususario a tomar decisiones relativas a las apuestas.
+
+- Tercera columna: muestra información relativa al histórico de kinielas. Permite conmutar entre la puntuación del usuario en la última kiniela y el ranking de la última jornada.
