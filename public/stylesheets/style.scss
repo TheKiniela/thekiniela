@@ -1,0 +1,595 @@
+@mixin flex {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+$primaryLight: #6FFFE9;
+$secondaryLight: #5BC0BE;
+$darkOne: #050A1A;
+$darkTwo: #070E24;
+$darkMenu: #0B132B;
+$darkThree: #0D1836;
+$darkFour: #121C3C;
+$darkFive: #131C37;
+$darkSix: #101935;
+
+* {
+  font-family: 'Poppins', Helvetica, Arial, sans-serif;
+  color: $primaryLight;
+  font-size: 15px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  background-color: $darkOne !important;
+}
+
+a {
+  color: $primaryLight !important;
+}
+
+span {
+  color: $secondaryLight !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+h2 {
+  font-size: 18px !important;
+}
+
+.padding-0{
+  padding-right:0;
+  padding-left:0;
+}
+
+// Nav
+nav {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 50px;
+  background-color: $darkMenu;
+}
+
+.nav-container {
+  max-width: 1500px;
+  margin: auto;
+  padding: 10px 15px;
+}
+
+.menu {
+  @include flex;
+  width: 350px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-right: 20px;
+  padding-top: 5px;
+  box-sizing: border-box;
+  float: right;
+
+  a#welcome {
+    cursor: default;
+  }
+
+  a {
+    margin-left: 30px;
+    color: $secondaryLight !important;
+  }
+
+  a:hover {
+    color: $primaryLight !important;
+  }
+
+}
+
+.kiniela-logo {
+  float: left;
+}
+
+
+.clear {
+  clear: both;
+}
+
+// Main container
+.main-container {
+  max-width: 1450px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.column {
+  padding: 25px;
+  box-sizing: border-box;
+}
+
+.body-left {
+  background-color: $darkSix;
+  height: 100%;
+}
+
+.body-center {
+  background-color: $darkFour;
+  height: 100%;
+}
+
+.body-right {
+  background-color: $darkTwo;
+  height: 100%;
+}
+
+#not-users {
+  display: none;
+ 
+}
+
+.not-user-msg {
+  color: &$secondaryLight;
+  
+}
+
+
+// Column left
+.head-left {
+  background-color: $darkFive;
+  @include flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 80px;
+  h2 {
+    color: $secondaryLight;
+  }
+}
+
+
+.match img {
+  margin-right: 10px;
+}
+
+.onex2-container {
+  width: 100%;
+  @include flex;
+  justify-content: flex-end;
+}
+
+.onex2-items {
+  width: 79px;
+  @include flex;
+  justify-content: space-between;
+  margin-right: 12px;
+  p {
+    font-weight: bold;
+  }
+}
+
+.match-container {
+  @include flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bets-left {
+  width: 50px;
+}
+
+.remove-button {
+  @include flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  width: 100%;
+}
+
+// Column center
+.head-center {
+  background-color: $darkThree;
+  @include flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 80px;
+
+  img {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  h2 {
+    color: $secondaryLight;
+  }
+}
+
+.body-center p:first-child {
+  color: $secondaryLight;
+}
+
+.body-center p {
+  color: $secondaryLight;
+}
+
+.match-data-text p:nth-child(2) {
+  color: $primaryLight;
+}
+
+.match-data-img {
+  @include flex;
+  justify-content: space-between;
+  width: 150px;
+  align-items: center;
+}
+
+.match-data {
+  @include flex;
+  justify-content: space-between;
+}
+
+.prob {
+  // width: 90%;
+  margin: 50px auto 10px auto !important;
+}
+
+.prob-data {
+  margin: 0px auto 20px 0px !important;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $secondaryLight;
+}
+
+.item-prob {
+  text-align: center;
+  background-color: $secondaryLight;
+  color: $darkFour;
+  border: 1px solid $darkFour;
+}
+
+.data-prob {
+  text-align: center;
+  color: $secondaryLight;
+  font-weight: bold;
+ 
+}
+
+.data-prob, #one, #x, #two {
+  font-size: 20px;
+}
+
+.left-prob {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.right-prob {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.h2h {
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.last-games {
+  margin: auto;
+ width: 100%;
+}
+
+.games-info {
+  display: none;
+}
+
+.smooth {
+  height: 500px;
+  opacity: 1;
+  -webkit-transition: all 1s ease-in-out;
+-moz-transition: all 1s ease-in-out;
+-ms-transition: all 1s ease-in-out;
+-o-transition: all 1s ease-in-out;
+transition: all 1s ease-in-out;
+}
+
+.lg-btn {
+  margin-top: 50px;
+  font-size: 14px;
+  width: 90% !important;
+}
+
+
+
+
+.last-games p {
+  color: $secondaryLight;
+  font-size: 14px;
+}
+
+.scores-lg p {
+font-weight: bold;
+}
+
+// Column right 
+#startRound1, #endRound1, #startRound2, #endRound2 {
+  display: none;
+}
+
+.matches2 {
+  font-size: 14px;
+  color: $secondaryLight;
+}
+
+.last-kiniela h2, .last-k-round h2 {
+  color: $secondaryLight;
+}
+
+.head-right {
+  @include flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.last-k-round {
+  @include flex;
+}
+
+.last-k-round img {
+  margin-left: 5px;
+}
+
+.res-head p {
+  font-size: 14px;
+  color: $secondaryLight;
+}
+
+
+.totals {
+  font-size: 15px;
+  color: $secondaryLight;
+  text-align: right;
+}
+
+.global-data, .total-data {
+  font-weight: bold;
+}
+
+// #total-data {
+//   font-size: 20px;
+// }
+
+.global-data {
+  font-size: 40px;
+}
+
+// Buttons
+.buttons-left {
+  @include flex;
+  justify-content: space-between;
+  margin-top: 20px;
+
+}
+
+.button {
+  border-radius: 5px;
+  border: 0px solid #000;
+  padding: 10px;
+  width: 48%;
+}
+
+.main-button {
+  background-color: $primaryLight;
+  color: $darkSix;
+}
+
+.secondary-button {
+  background-color: $darkSix;
+  color: $primaryLight;
+  border: 1px solid $primaryLight;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.remove-btn {
+  border-radius: 5px;
+  border: 0px solid #000;
+  padding: 10px;
+  width: 150px;
+}
+
+.main-button:hover,
+.secondary-button:hover {
+  font-weight: bold;
+}
+
+.buttons-right {
+  @include flex;
+  justify-content: flex-end;
+}
+
+.datamatch {
+  cursor: pointer;
+}
+
+
+// Radio buttons
+.radio-set {
+  margin-top: -40px;
+  width: 100px;
+  @include flex;
+  justify-content: space-between;
+}
+
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25px;
+  height: 25px;
+  border-radius: 10%;
+  background: $primaryLight;
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
+  content: '';
+  width: 17px;
+  height: 17px;
+  background: $darkSix;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 10%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked)+label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+[type="radio"]:checked+label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.ht, .at, .users-names, .users-bets {
+  display: none;
+}
+
+
+
+// Scores 
+
+.display-scores {
+  width: 300px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+// index 
+.bg-index {
+  @include flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/bg-dark2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+
+.container-index {
+  text-align: center;
+  p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+
+// login
+.main-login {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-image: url("../images/bg-dark2.png");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: bottom center;
+@include flex;
+justify-content: center;
+align-items: center;
+}
+
+.container-login {
+  max-width: 400px;
+
+  ::placeholder {
+    color: $secondaryLight;
+  }
+}
+
+.logo {
+  display: block;
+  margin: 0px auto 30px auto;
+}
+
+.input-login {
+  width: 100%;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid $secondaryLight;
+  background-color: $darkMenu;
+  color: $primaryLight;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  text-align: center;
+}
+
+.submit-login {
+  width: 100%;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid $secondaryLight;
+  background-color: $primaryLight;
+  color: $darkOne;
+  margin-bottom: 40px;
+  padding: 5px 15px;
+  text-align: center;
+}
+
+.submit-login:hover {
+  font-weight: bold;
+}
+
+.google {
+  margin-bottom: 10px;;
+}
+
+#ranking-table {
+  display: none;
+}
+
+#go-lastkiniela {
+  display: none;
+}
+
+.login-signup {
+  text-align: center;
+  display: block;
+  margin: 20px auto 0px auto;
+  color: $secondaryLight !important;
+}
+
+.login-su {
+  margin-top: -20px;
+}
+
+.login-signup:hover {
+  color: $primaryLight !important;
+}

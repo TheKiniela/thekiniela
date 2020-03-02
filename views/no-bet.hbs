@@ -1,0 +1,32 @@
+
+<div class="index-form">
+    <form action="/" method="POST">
+    <p>JUGADOR LOGUEADO QUE AÚN NO HA APOSTADO</p>
+    <h2 id="round">{{ round }}</h2>
+    {{#each matches}}
+     <label id="match{{@index}}" class="match">{{this}}</label>
+        <input type="radio" id="bet_{{@index}}_1" name="bet_{{@index}}" value="1">
+        <input type="radio" id="bet_{{@index}}_x" name="bet_{{@index}}" value="X">
+        <input type="radio" id="bet_{{@index}}_2" name="bet_{{@index}}" value="2">
+        <br>
+
+    {{/each}}
+    
+        
+        <input type="submit" value="BET">
+        <button id="clear">CLEAR</button>
+
+        {{!-- Hidden inputs for create the game --}}
+        {{!-- <input type="hidden" name="round" value="">
+        <input type="hidden" name="match1" value="">
+        <input type="hidden" name="match2" value="">
+        <input type="hidden" name="match3" value="">
+        <input type="hidden" name="match4" value="">
+        <input type="hidden" name="match5" value="">
+        <input type="hidden" name="match6" value="">
+        <input type="hidden" name="match7" value="">
+        <input type="hidden" name="match8" value="">
+        <input type="hidden" name="match9" value="">
+        <input type="hidden" name="match10" value=""> --}}
+    </form>
+</div>

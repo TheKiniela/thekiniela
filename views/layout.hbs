@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+  <nav>
+    <div class="nav-container">
+      <a class="kiniela-logo" href="/"><img width="100" height="auto" src="images/kiniela-logo.png" alt=""></a>
+      <div class="menu">
+        {{#if user}}
+        <a id="welcome" href="">Welcome {{user.username}}</a>
+        <a href="/logout">LOG OUT</a>
+        {{else}}
+        <a href="/login">LOG IN</a>
+        <a href="/signup">SIGN UP</a>
+        {{/if}}
+      </div>
+      
+      {{!-- <div>
+    <a href="/auth/google">Login With Google</a>
+    <a href="/auth/facebook">Login With Facebook</a>
+  </div> --}}
+  </nav>
+
+
+ {{{body}}}
+  
+<script>
+
+  document.getElementById("clear").addEventListener("click", function () {
+    for (let i = 0; i < 10; i++) {
+     document.getElementById("bet_" + i + "_x").checked = true;
+    }
+    }) 
+</script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="/javascripts/script.js"></script>
+</body>
+
+</html>
