@@ -1,8 +1,22 @@
+<!-- hidden info -->
+<p id="startRound1">{{ startRound }}</p>
+<p id="endRound1">{{ endRound }}</p>
+<p id="startRound2">{{ startRound2 }}</p>
+<p id="endRound2">{{ endRound2 }}</p>
+
+{{#each users}}
+<p class="users-names">{{this.username}}</p>
+{{/each}}
+
+{{#each users}}
+<p class="users-bets">{{this.bets}}</p>
+{{/each}}
+
 <div class="main-container">
-    <div class="row no-gutters">
+    <div class="row no-gutters main-row">
 
         <!-- LEFT COLUMN -->
-        <div class="col-lg-4">
+        <div class="col-lg-4 col-left">
             <div class="head-left column">
                 <h2 id="round" class="round-left">{{ round }}</h2>&nbsp;&nbsp;
                 <img src="images/laliga.png" alt="">
@@ -20,7 +34,8 @@
                     {{#each matches}}
                     <div class="match-container">
                         <div class="match">
-                            <p><img width="18" height="auto" src="images/data-btn.png" alt="">{{this}}</p>
+                            <p id="match{{@index}}"><img class="datamatch" id="datamatch{{@index}}" width="18"
+                                    height="auto" src="images/data-btn.png" alt="">{{this}}</p>
                         </div>
 
                         <div class="radio-set">
@@ -37,16 +52,13 @@
                                 <label for="bet_{{@index}}_2"></label>
                             </div>
                         </div>
-                        {{!-- <label id="match{{@index}}" class="match">{{this}}</label>
-                    <input class="radio" type="radio" id="bet_{{@index}}_1" name="bet_{{@index}}" value="1">
-                    <input class="radio" type="radio" id="bet_{{@index}}_x" name="bet_{{@index}}" value="X">
-                    <input class="radio" type="radio" id="bet_{{@index}}_2" name="bet_{{@index}}" value="2"> --}}
+
                     </div>
 
 
                     {{/each}}
                     <div class="buttons-left">
-                        <button class="secondary-button button" id="clear">CLEAR</button>
+                        <div class="secondary-button button text-center" id="clear">RESTORE</div>
                         <input class="main-button button" type="submit" value="BET">
                     </div>
 
@@ -64,22 +76,22 @@
             <div class="body-center column">
                 <div class="match-data">
                     <div class="match-data-text">
-                        <p>MATCH 1</p>
-                        <p>Real Sociedad - Valladolid</p>
+                        <p>MATCH <span id="match-number"></span></p>
+                        <p id="match-teams"></p>
                     </div>
                     <div class="match-data-img">
-                        <img src="" alt="">
+                        <img width="50" height="auto" id="home-badge" src="" alt="">
                         <p>vs</p>
-                        <img src="" alt="">
+                        <img width="50" height="auto" id="away-badge" src="" alt="">
                     </div>
                 </div>
 
                 <br>
                 <p>
-                    <b>Día:</b> 12-02-2020<br>
-                    <b>Hora:</b> 21:00<br>
-                    <b>Stadium:</b> Anoeta<br>
-                    <b>Referee:</b> Undiano Mallenco<br>
+                    <b>Day: </b><span id="day"></span><br>
+                    <b>Hour: </b><span id="time"></span><br>
+                    <b>Stadium: </b><span id="stadium"></span><br>
+                    <b>Referee: </b><span id="referee"></span><br>
                 </p>
                 <div class="row prob">
                     <div class="col-lg-4 item-prob left-prob">1</div>
@@ -87,36 +99,82 @@
                     <div class="col-lg-4 item-prob right-prob">2</div>
                 </div>
                 <div class="row prob-data">
-                    <div class="col-lg-4 data-prob left-prob">60%</div>
-                    <div class="col-lg-4 data-prob">30%</div>
-                    <div class="col-lg-4 data-prob right-prob">10%</div>
+                    <div class="col-lg-4 data-prob left-prob"><span id="one"></span>%</div>
+                    <div class="col-lg-4 data-prob"><span id="x"></span>%</div>
+                    <div class="col-lg-4 data-prob right-prob"><span id="two"></span>%</div>
                 </div>
-                <div class="h2h">
-                    <p>LAST GAMES BETWEEN THEM</p>
-                </div>
-                <div class="row last-games">
-                    <div class="col-lg-9 text-left">
-                        <p>Valladolid - Real Sociedad</p>
-                        <p>Real Sociedad - Valladolid</p>
-                        <p>Valladolid - Real Sociedad</p>
-                        <p>Real Sociedad - Valladolid</p>
-                        <p>Valladolid - Real Sociedad</p>
+                <button id="lg" class="lg-btn secondary-button button">LAST GAMES</button>
+                <div id="games-info" class="games-info">
+                    <div class="lg">
+                        <div class="h2h">
+                            <p>Last Games Between Them</p>
+                        </div>
+
+                        <div class="row last-games">
+                            {{!-- <div class="col-lg-4 text-left">
+            <p class="hh-date"></p>
+            <p class="hh-date"></p>
+           
+          </div> --}}
+                            <div class="col-lg-8 text-left">
+                                <p class="hh-teams"></p>
+                                <p class="hh-teams"></p>
+
+                            </div>
+                            <div class="col-lg-4 scores-lg text-left">
+                                <p class="hh-scores"></p>
+                                <p class="hh-scores"></p>
+
+                            </div>
+                        </div>
+                        <div class="h2h">
+                            <p>Last Games <span id="ht-lg"></span></p>
+                        </div>
+                        <div class="row last-games">
+                            {{!-- <div class="col-lg-4 text-left">
+            <p class="hh-date"></p>
+            <p class="hh-date"></p>
+           
+          </div> --}}
+                            <div class="col-lg-8 text-left">
+                                <p class="htlg-teams"></p>
+                                <p class="htlg-teams"></p>
+                                <p class="htlg-teams"></p>
+                            </div>
+                            <div class="col-lg-4 scores-lg text-left">
+                                <p class="htlg-scores"></p>
+                                <p class="htlg-scores"></p>
+                                <p class="htlg-scores"></p>
+                            </div>
+                        </div>
+                        <div class="h2h">
+                            <p>Last Games <span id="at-lg"></span></p>
+                        </div>
+                        <div class="row last-games">
+                            {{!-- <div class="col-lg-4 text-left">
+            <p class="hh-date"></p>
+            <p class="hh-date"></p>
+           
+          </div> --}}
+                            <div class="col-lg-8 text-left">
+                                <p class="atlg-teams"></p>
+                                <p class="atlg-teams"></p>
+                                <p class="atlg-teams"></p>
+                            </div>
+                            <div class="col-lg-4 scores-lg text-left">
+                                <p class="atlg-scores"></p>
+                                <p class="atlg-scores"></p>
+                                <p class="atlg-scores"></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-3 scores-lg text-left">
-                        <p>3 - 2</p>
-                        <p>1 - 1</p>
-                        <p>2 - 1</p>
-                        <p>0 - 2</p>
-                        <p>0 - 0</p>
-                    </div>
                 </div>
+
 
             </div>
         </div>
 
         <!-- RIGHT COLUMN -->
-        <p id="startRound">{{ startRound2 }}</p>
-        <p id="endRound">{{ endRound2 }}</p>
         <div class="col-lg-4 col-right">
             <div class="head-right column">
                 <div class="last-kiniela">
@@ -128,107 +186,144 @@
                 </div>
 
             </div>
+            {{!-- Last kiniela --}}
             <div class="body-right column">
-                <div class="row">
-                    <div class="col-lg-6"></div>
-                    <div class="col-lg-6">
-                        <div class="row">
-                            <div class="col-lg-4 text-center res-head">
-                                <p>BET</p>
+                <div id="last-kiniela">
+                    <div class="row">
+                        <div class="col-lg-6"></div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-4 text-center res-head">
+                                    <p>BET</p>
+                                </div>
+                                <div class="col-lg-4 text-center res-head">
+                                    <p>RES.</p>
+                                </div>
+                                <div class="col-lg-4 text-center res-head">
+                                    <p>POINTS</p>
+                                </div>
                             </div>
-                            <div class="col-lg-4 text-center res-head">
-                                <p>RES.</p>
-                            </div>
-                            <div class="col-lg-4 text-center res-head">
-                                <p>POINTS</p>
+                        </div>
+                    </div>
+
+                    <div id="not-users" class="row">
+                        <div class="col-lg-12 text-center">
+                            <p class="not-user-msg">
+                                No player bet on {{round2}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            {{#each matches2}}
+                            <p class="matches2">{{this}}</p>
+                            {{/each}}
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row">
+                                <div class="col-lg-4 text-center">
+                                    {{#if bets2}}
+                                    {{#each bets2}}
+                                    <p class="matches2 user-bets">{{this}}</p>
+                                    {{/each}}
+                                    {{else}}
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    <p class="matches2 user-bets">-</p>
+                                    {{/if}}
+                                </div>
+                                <div class="col-lg-4 text-center">
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                    <p class="matches2 results"></p>
+                                </div>
+                                <div class="col-lg-4 text-center">
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                    <p class="matches2 points"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                {{!-- Ranking --}}
+                <div id="ranking-table">
 
-          <div class="col-lg-6">
-            {{#each matches2}}
-            <p class="matches2">{{this}}</p>
-            {{/each}}
-          </div>
-          <div class="col-lg-6">
-            <div class="row">
-              <div class="col-lg-4 text-center">
-                {{#if bets2}}
-                {{#each bets2}}
-                <p class="matches2 user-bets">{{this}}</p>
-                {{/each}}
-                {{else}}
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                 <p class="matches2 user-bets">-</p>
-                {{/if}}
-              </div>
-              <div class="col-lg-4 text-center">
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-                <p class="matches2 results"></p>
-              </div>
-              <div class="col-lg-4 text-center">
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-                <p class="matches2 points"></p>
-              </div>
-            </div>
-          </div>
-        </div>
+                    <div class="row">
+                        <div class="col-lg-2"></div>
+                        <div class="col-lg-6"></div>
+                        <div class="col-lg-4 text-center">
+                            <p>POINTS</p>
+                        </div>
+                    </div>
+
+                     <div id="not-users" class="row">
+                        <div class="col-lg-12">
+                            <p class="not-user-msg"
+                                No player bet on {{round2}}</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div id="usersPos" class="col-lg-2 text-center"></div>
+                        <div id="usersRanking" class="col-lg-6">
 
 
-        <div class="total">
-          <p class="totals">TOTAL: <span id="total-data" class="total-data">0</span></p>
-          <p class="totals">GLOBAL: <span id="global-data" class="global-data">0</span></span></p>
-        </div>
+                        </div>
+                        <div id="usersScores" class="col-lg-4 text-center">
 
-                <div class="buttons-left">
-                    <button class="main-button button" id="check">CHECK</button>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="total">
+                    <p class="totals">{{user.username}}, your score in {{round2}} is: <span id="total-data"
+                            class="global-data">0</span></p>
+                    {{!-- <p class="totals">GLOBAL: <span id="global-data" class="global-data">0</span></span></p> --}}
+                </div>
+
+                <div class="buttons-right">
+                    <button class="secondary-button button" id="go-ranking">RANKING</button>
+                    <button class="secondary-button button" id="go-lastkiniela">LAST KINIELA</button>
+
                 </div>
 
             </div>
-        </div>
 
+        </div>
         {{else}}
         <!-- PARA PINTAR EL INDEX -->
-        <div class="col-lg-8">
+        <div class="col-lg-8 bg-index">
 
-            <div class="logo-kiniela">
+            <div class="container-index">
                 <img src="images/kiniela-logo-big.png" alt="" class="kiniela-logo-big">
-                <p> Nobody knows more than football than you!</p>
-                <div class="login-button">
-                    <button class="btn-login">LOG IN</button>
-                </div>
-                <div class="sign-up-button">
-                    <button class="btn-signup">SIGN UP</button>
-                </div>
+                <p> Nobody knows more about football than you!</p>
+                <a href="/login"><button class="main-button button">LOG IN</button></a>
+                <a href="/signup"><button class="secondary-button button">SIGN UP</button></a>
             </div>
-
 
         </div>
 

@@ -37,7 +37,14 @@
 
  {{{body}}}
   
+<script>
 
+  document.getElementById("clear").addEventListener("click", function () {
+    for (let i = 0; i < 10; i++) {
+     document.getElementById("bet_" + i + "_x").checked = true;
+    }
+    }) 
+</script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="/javascripts/script.js"></script>
 </body>
