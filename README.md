@@ -2,7 +2,7 @@
                                                         
 Kiniela es una web de apuestas deportivas desarrollada en Node.js, utilizando Express.js y Mongo DB. Cada viernes a las 21:00 la web se actualiza con los partidos de la jornada de Liga y, a su vez, termina el período de apuestas para esa jornada.
 
-La actualización de los partidos se realiza gracias al package cron, de npm, el cual permite programas acciones en el servicor de forma sencilla.
+La actualización de los partidos se realiza gracias al package cron, de npm, el cual permite programar acciones en el servidor para que se ejecuten de forma periódica.
 
 ```
 let jobCreateGame = new CronJob('00 21 * * 5', function() {
