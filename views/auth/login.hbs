@@ -1,45 +1,25 @@
-{{!-- <form action="/login" method="POST">
-  <div>
-    <label for="username">Username:</label>
-    <input type="text" name="username">
+<div class="main-login">
+  <div class="container-login">
+    <img src="images/kiniela-logo.png" alt="" class="logo">
+        <form action="/login" method="POST">
+         
+            <input class="input-login" type="text" name="username" placeholder="User">
+            <input class="input-login" type="password" name="password" placeholder="Password">
+         
+            <input class="submit-login" type="submit" value="LOG IN">
+        
+        </form>
+<a href="/auth/google"><img class="google" width="400" height="auto" src="images/google.svg" alt=""></a>
+<a href="/auth/facebook"><img width="400" height="auto" src="images/fb.svg" alt=""></a>
+
+       
+           <a class="login-signup" href="/signup">SIGN UP</a>
+         
   </div>
-  <div>
-    <label for="password">Password:</label>
-    <input type="password" name="password">
-  </div>
-  {{#if message}}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-  <div>
-    <input type="submit" value="Log In">
-  </div>
-  <p class="account-message">
-    Don't have an account? <a href="/signup">Sign up</a>
-  </p>
-</form> --}}
-
-
-<div class="form-container mt-5">
-  <form class="form-signin" action="/login" method="POST">
-    <div class="text-center mb-4">
-      <img class="kiniela-logo" src="images/kiniela-logo.png" alt="" width="72" height="72">
-      {{!-- <p>Edit this celebrity using this beautiful form<br>made with ♥ and Bootstrap.</p> --}}
-    </div>
-
-    <div class="form-label-group">
-      <input type="text" name="username" class="form-control" placeholder="Username" required
-        autofocus>
-      <label for="username"></label>
-    </div>
-
-    <div class="form-label-group">
-      <input type="password" name="password" class="form-control" placeholder="Password"
-         required autofocus>
-      <label for="password"></label>
-    </div>
-
-    <button class="btn-for-login" type="submit">LOG IN</button>
-    <button class="btn-for-googlelogin" type="submit"></button>
-    <p class="btn-for-login-text">&copy; Iván Herranz</p>
-  </form>
 </div>
+      
+        
+       
+     
+
+  

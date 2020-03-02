@@ -30,6 +30,10 @@ a {
   color: $primaryLight !important;
 }
 
+span {
+  color: $secondaryLight !important;
+}
+
 a:hover {
   text-decoration: none !important;
 }
@@ -120,6 +124,16 @@ nav {
 .body-right {
   background-color: $darkTwo;
   height: 100%;
+}
+
+#not-users {
+  display: none;
+ 
+}
+
+.not-user-msg {
+  color: &$secondaryLight;
+  
 }
 
 
@@ -235,8 +249,13 @@ nav {
 
 .data-prob {
   text-align: center;
-  color: $primaryLight;
+  color: $secondaryLight;
   font-weight: bold;
+ 
+}
+
+.data-prob, #one, #x, #two {
+  font-size: 20px;
 }
 
 .left-prob {
@@ -457,9 +476,11 @@ font-weight: bold;
   transform: scale(1);
 }
 
-.ht, .at {
+.ht, .at, .users-names, .users-bets {
   display: none;
 }
+
+
 
 // Scores 
 
@@ -470,104 +491,105 @@ font-weight: bold;
   justify-content: space-between;
 }
 
-/* Index no logged in
--------------------------------------------------- */
-// .col-lg-8 {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   justify-content: center; 
-//   text-align: center;
-//   position: absolute;
-// }
-
-.kiniela-logo-big {
-margin-bottom: 50px;
-width: 462px;
-height: 152px;
-left: 1043px;
-top: 339px;
+// index 
+.bg-index {
+  @include flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/bg-dark2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
 }
 
-.btn-login {
-width: 243.15px;
-height: 44px;
-left: 1152px;
-top: 619px;
-background: #6FFFE9;
-border: 1px solid #6FFFE9;
-box-sizing: border-box;
-border-radius: 5px;
-color: #0B132B;
-margin-bottom: 20px;
+.container-index {
+  text-align: center;
+  p {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
 }
 
-.btn-signup {
-width: 243px;
-height: 44px;
-left: 1152px;
-top: 682px;
-border: 1px solid #6FFFE9;
-box-sizing: border-box;
-border-radius: 5px;
+// login
+.main-login {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-image: url("../images/bg-dark2.png");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: bottom center;
+@include flex;
+justify-content: center;
+align-items: center;
 }
 
-.btn-login-google {
-  background-image: url("images/login-google.png");
+.container-login {
+  max-width: 400px;
+
+  ::placeholder {
+    color: $secondaryLight;
+  }
 }
 
-/* Log In & Sign Up
--------------------------------------------------- */
-.kiniela-logo {
-width: 140px;
-height: 46px;
-left: 1204px;
-top: 240px;
-}
-.form-signin {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-.form-label-group {
-width: 334px;
-height: 44px;
-left: 1103px;
-top: 338px;
-background: #101935;
-border: 1px solid #6FFFE9;
-box-sizing: border-box;
-border-radius: 5px;
-}
-.btn-for-login {
-width: 334px;
-height: 44px;
-left: 1103px;
-top: 458px;
-
-background: #6FFFE9;
-border: 1px solid #6FFFE9;
-box-sizing: border-box;
-border-radius: 5px;
+.logo {
+  display: block;
+  margin: 0px auto 30px auto;
 }
 
-.btn-for-login-text {
-position: absolute;
-width: 60px;
-height: 24px;
-left: 1240px;
-top: 652px;
+.input-login {
+  width: 100%;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid $secondaryLight;
+  background-color: $darkMenu;
+  color: $primaryLight;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  text-align: center;
+}
 
-font-family: Poppins;
-font-style: normal;
-font-weight: normal;
-font-size: 16px;
-line-height: 24px;
-/* identical to box height */
+.submit-login {
+  width: 100%;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid $secondaryLight;
+  background-color: $primaryLight;
+  color: $darkOne;
+  margin-bottom: 40px;
+  padding: 5px 15px;
+  text-align: center;
+}
 
-letter-spacing: 0.1em;
-text-decoration-line: underline;
+.submit-login:hover {
+  font-weight: bold;
+}
 
-color: #6FFFE9;
+.google {
+  margin-bottom: 10px;;
+}
+
+#ranking-table {
+  display: none;
+}
+
+#go-lastkiniela {
+  display: none;
+}
+
+.login-signup {
+  text-align: center;
+  display: block;
+  margin: 20px auto 0px auto;
+  color: $secondaryLight !important;
+}
+
+.login-su {
+  margin-top: -20px;
+}
+
+.login-signup:hover {
+  color: $primaryLight !important;
 }

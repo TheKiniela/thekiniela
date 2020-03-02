@@ -12,6 +12,9 @@ body {
 a {
   color: #6FFFE9 !important; }
 
+span {
+  color: #5BC0BE !important; }
+
 a:hover {
   text-decoration: none !important; }
 
@@ -81,6 +84,12 @@ nav {
 .body-right {
   background-color: #070E24;
   height: 100%; }
+
+#not-users {
+  display: none; }
+
+.not-user-msg {
+  color: .not-user-msg #5BC0BE; }
 
 .head-left {
   background-color: #131C37;
@@ -176,8 +185,11 @@ nav {
 
 .data-prob {
   text-align: center;
-  color: #6FFFE9;
+  color: #5BC0BE;
   font-weight: bold; }
+
+.data-prob, #one, #x, #two {
+  font-size: 20px; }
 
 .left-prob {
   border-top-left-radius: 5px;
@@ -354,7 +366,7 @@ nav {
   -webkit-transform: scale(1);
   transform: scale(1); }
 
-.ht, .at {
+.ht, .at, .users-names, .users-bets {
   display: none; }
 
 .display-scores {
@@ -363,87 +375,90 @@ nav {
   flex-flow: row wrap;
   justify-content: space-between; }
 
-/* Index no logged in
--------------------------------------------------- */
-.kiniela-logo-big {
-  margin-bottom: 50px;
-  width: 462px;
-  height: 152px;
-  left: 1043px;
-  top: 339px; }
-
-.btn-login {
-  width: 243.15px;
-  height: 44px;
-  left: 1152px;
-  top: 619px;
-  background: #6FFFE9;
-  border: 1px solid #6FFFE9;
-  box-sizing: border-box;
-  border-radius: 5px;
-  color: #0B132B;
-  margin-bottom: 20px; }
-
-.btn-signup {
-  width: 243px;
-  height: 44px;
-  left: 1152px;
-  top: 682px;
-  border: 1px solid #6FFFE9;
-  box-sizing: border-box;
-  border-radius: 5px; }
-
-.btn-login-google {
-  background-image: url("images/login-google.png"); }
-
-/* Log In & Sign Up
--------------------------------------------------- */
-.kiniela-logo {
-  width: 140px;
-  height: 46px;
-  left: 1204px;
-  top: 240px; }
-
-.form-signin {
+.bg-index {
   display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  justify-content: center; }
+  background-image: url("../images/bg-dark2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center; }
 
-.form-label-group {
-  width: 334px;
-  height: 44px;
-  left: 1103px;
-  top: 338px;
-  background: #101935;
-  border: 1px solid #6FFFE9;
-  box-sizing: border-box;
-  border-radius: 5px; }
+.container-index {
+  text-align: center; }
+  .container-index p {
+    margin-top: 30px;
+    margin-bottom: 30px; }
 
-.btn-for-login {
-  width: 334px;
-  height: 44px;
-  left: 1103px;
-  top: 458px;
-  background: #6FFFE9;
-  border: 1px solid #6FFFE9;
-  box-sizing: border-box;
-  border-radius: 5px; }
+.main-login {
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  background-image: url("../images/bg-dark2.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center; }
 
-.btn-for-login-text {
-  position: absolute;
-  width: 60px;
-  height: 24px;
-  left: 1240px;
-  top: 652px;
-  font-family: Poppins;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
-  /* identical to box height */
-  letter-spacing: 0.1em;
-  text-decoration-line: underline;
-  color: #6FFFE9; }
+.container-login {
+  max-width: 400px; }
+  .container-login ::placeholder {
+    color: #5BC0BE; }
+
+.logo {
+  display: block;
+  margin: 0px auto 30px auto; }
+
+.input-login {
+  width: 100%;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid #5BC0BE;
+  background-color: #0B132B;
+  color: #6FFFE9;
+  margin-bottom: 10px;
+  padding: 5px 15px;
+  text-align: center; }
+
+.submit-login {
+  width: 100%;
+  border-radius: 5px;
+  height: 50px;
+  border: 1px solid #5BC0BE;
+  background-color: #6FFFE9;
+  color: #050A1A;
+  margin-bottom: 40px;
+  padding: 5px 15px;
+  text-align: center; }
+
+.submit-login:hover {
+  font-weight: bold; }
+
+.google {
+  margin-bottom: 10px; }
+
+#ranking-table {
+  display: none; }
+
+#go-lastkiniela {
+  display: none; }
+
+.login-signup {
+  text-align: center;
+  display: block;
+  margin: 20px auto 0px auto;
+  color: #5BC0BE !important; }
+
+.login-su {
+  margin-top: -20px; }
+
+.login-signup:hover {
+  color: #6FFFE9 !important; }
 
 /*# sourceMappingURL=style.css.map */

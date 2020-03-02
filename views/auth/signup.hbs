@@ -1,46 +1,16 @@
-{{!-- <h2>Signup</h2>
+<div class="main-login">
+  <div class="container-login">
+    <img src="images/kiniela-logo.png" alt="" class="logo">
+        <form action="/signup" method="POST">
+         
+            <input class="input-login" type="text" name="username" placeholder="User">
+            <input class="input-login" type="password" name="password" placeholder="Password">
+            <input class="submit-login" type="submit" value="SIGN UP">
+        
+        </form>
 
-<form action="/signup" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-  <br><br>
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-
-  {{#if message}}
-    <div class="error-message">{{ message }}</div>
-  {{/if}}
-  <br><br>
-
-  <button>Create account</button>
-
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/login">Login</a>
-  </p>
-</form> --}}
-
-
-<div class="form-container mt-5">
-  <form class="form-signin" action="/login" method="POST">
-    <div class="text-center mb-4">
-      <img class="kiniela-logo" src="images/kiniela-logo.png" alt="" width="72" height="72">
-      {{!-- <p>Edit this celebrity using this beautiful form<br>made with ♥ and Bootstrap.</p> --}}
-    </div>
-
-    <div class="form-label-group">
-      <input type="text" name="username" class="form-control" placeholder="Username" required
-        autofocus>
-      <label for="username"></label>
-    </div>
-
-    <div class="form-label-group">
-      <input type="password" name="password" class="form-control" placeholder="Password"
-         required autofocus>
-      <label for="password"></label>
-    </div>
-
-    <button class="btn-for-login" type="submit">SIGN UP</button>
-    <p class="btn-for-login-text">LOG IN</p>
-  </form>
+       
+           <a class="login-signup login-su" href="/login">LOG IN</a>
+         
+  </div>
 </div>

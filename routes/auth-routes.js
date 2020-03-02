@@ -92,7 +92,7 @@ router.get(
 router.get(
   "/auth/google/callback",
   passport.authenticate("google", {
-    successRedirect: "/main",
+    successRedirect: "/",
     failureRedirect: "/login" // here you would redirect to the login page using traditional login approach
   })
 );
@@ -105,7 +105,7 @@ router.get(
 router.get(
   '/auth/facebook/callback',
   passport.authenticate('facebook', { 
-    successRedirect: '/main',
+    successRedirect: '/',
     failureRedirect: '/login' }));
 
 

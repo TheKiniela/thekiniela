@@ -48,8 +48,10 @@ router.get('/main', ensureLogin.ensureLoggedIn(), (req, res, next) => {
             let round2 = game2.round;
             let startRound2 = game2.startRound;
             let endRound2 = game2.endRound;
+            let users = game2.users;
             res.render('bet', {
               user: req.user,
+              users,
               round,
               matches,
               bets,
@@ -98,11 +100,11 @@ router.get('/', (req, res, next) => {
               skip: 1
             })
             .then(game2 => {
-
+             
               let bets2 = game2.users.find(e => {
                 return e.userID.toString() === req.user._id.toString()
               });
-
+              let users = game2.users;
               let matches2 = game2.matches;
               let round2 = game2.round;
               let startRound2 = game2.startRound;
@@ -110,6 +112,7 @@ router.get('/', (req, res, next) => {
               res.render('index', {
                 user: req.user,
                 matches,
+                users,
                 round,
                 startRound,
                 endRound,
@@ -170,6 +173,7 @@ router.post('/', ensureLogin.ensureLoggedIn(), (req, res, next) => {
 
   const newUser = {
     userID: userId,
+    username: req.user.username,
     betScore: null,
     bets: [
       bet_0,
